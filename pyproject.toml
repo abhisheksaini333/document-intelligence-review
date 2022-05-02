@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools==62.1.0", "wheel==0.37.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "document-intelligence-review"
+version = "0.1.0"
+description = "Document OCR, field evidence and human review"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[project.scripts]
+docreview = "docreview.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["docreview*"]

@@ -1,0 +1,17 @@
+.venv/
+.tools/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+node_modules/
+frontend/dist/
+data/
+artifacts/
+models/
+mlruns/
+.bentoml/
+.env
+*.sqlite*
+playwright-report/
+test-results/
