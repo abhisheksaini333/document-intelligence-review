@@ -2,6 +2,12 @@ import re, unicodedata
 from decimal import Decimal, InvalidOperation
 from datetime import datetime
 
+def document_date(value):
+    for fmt in ('%Y-%m-%d','%d %b %Y','%d %B %Y'):
+        try: return datetime.strptime(value.strip(),fmt).date().isoformat()
+        except ValueError: pass
+    raise ValueError('Use ISO or a spelled month to avoid ambiguous dates')
+
 def amount(value):
     value=normalize_text(value).strip()
     negative=value.startswith('(') and value.endswith(')')
