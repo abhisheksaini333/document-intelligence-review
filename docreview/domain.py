@@ -12,6 +12,19 @@ class Box:
     @property
     def area(self): return self.width*self.height
 @dataclass(frozen=True)
+class Field:
+    name: str
+    value: str
+    confidence: float
+    page: int
+    box: Box | None
+    method: str
+    def __post_init__(self):
+        if self.name not in ('number','date','subtotal','tax','total','currency') or not isinstance(self.value,str) or not self.value or not math.isfinite(self.confidence) or not 0<=self.confidence<=1 or self.page<1:
+            raise ValueError('Invalid field evidence')
+    def to_dict(self): return asdict(self)
+
+@dataclass(frozen=True)
 class Token:
     text: str
     confidence: float
