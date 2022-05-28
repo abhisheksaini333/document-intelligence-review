@@ -9,6 +9,16 @@ DESCRIPTIONS={
  'purchase_order':'Ship ordered goods to buyer. Authorized procurement. Delivery instructions.',
  'receipt':'Paid in full. Thank you for your purchase. Card payment approved.'}
 
+def render(record,path):
+    from PIL import Image,ImageDraw,ImageFont
+    from pathlib import Path
+    paths=['/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf','/Library/Fonts/Arial.ttf','/System/Library/Fonts/Supplemental/Arial.ttf']
+    font_path=next((p for p in paths if Path(p).exists()),None)
+    if not font_path: raise RuntimeError('Install DejaVu Sans or Arial for raster fixtures')
+    image=Image.new('RGB',(1500,1000),'white');draw=ImageDraw.Draw(image);font=ImageFont.truetype(font_path,28)
+    for i,line in enumerate(record['text'].splitlines()): draw.text((70,70+i*95),line,fill='black',font=font)
+    path=Path(path);path.parent.mkdir(parents=True,exist_ok=True);image.save(path,dpi=(150,150));return path
+
 def records():
     rows=[]
     for label in LABELS:
