@@ -2,6 +2,19 @@ import hashlib, os, tempfile
 from pathlib import Path
 MAX_BYTES=8*1024*1024
 
+def validate_image(data):
+    import io,warnings
+    from PIL import Image
+    image_type(data)
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter('error',Image.DecompressionBombWarning)
+            with Image.open(io.BytesIO(data)) as image:
+                width,height=image.size;pages=getattr(image,'n_frames',1)
+                if width*height>20_000_000 or pages>20: raise ValueError('Page or pixel limit exceeded')
+                image.verify();return {'width':width,'height':height,'pages':pages}
+    except Exception as exc: raise ValueError('Invalid image or unsupported dimensions') from exc
+
 def save_image(directory,data):
     suffix=image_type(data); digest=identity(data)
     directory=Path(directory); directory.mkdir(parents=True,exist_ok=True,mode=0o700)
