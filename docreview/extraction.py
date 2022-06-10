@@ -3,6 +3,21 @@ from decimal import Decimal
 from .domain import Field,Box
 from .normalize import amount,document_date
 
+def extract(tokens):
+    output={}
+    patterns={'number':r'(?:Number|Invoice No|Order No|Receipt No)\s*[:#]\s*(.+)','date':r'Date\s*:\s*(.+)','subtotal':r'Subtotal\s*:\s*(.+)','tax':r'Tax\s*:\s*(.+)','total':r'Total\s*:\s*(.+)'}
+    for line in lines(tokens):
+      for name,pattern in patterns.items():
+        match=re.fullmatch(pattern,line['text'],re.I)
+        if not match: continue
+        raw=match.group(1).strip()
+        try: value=amount(raw) if name in ('total','tax','subtotal') else document_date(raw) if name=='date' else raw
+        except ValueError: continue
+        field=Field(name,value,line['confidence'],line['page'],line['box'],'spatial-line').to_dict()
+        if name not in output or field['confidence']>output[name]['confidence']: output[name]=field
+        if re.search(r'\bUSD\b|\$',raw): output['currency']=Field('currency','USD',line['confidence'],line['page'],line['box'],'currency-symbol').to_dict()
+    return output
+
 def lines(tokens):
     groups=[]
     for token in sorted(tokens,key=lambda t:(t.page,t.box.y,t.box.x)):
