@@ -3,6 +3,13 @@ from decimal import Decimal
 from .domain import Field,Box
 from .normalize import amount,document_date
 
+def field_issues(fields):
+    issues=['missing_'+key for key in ('number','date','total') if key not in fields]
+    if all(key in fields for key in ('subtotal','tax','total')):
+        expected=Decimal(fields['subtotal']['value'])+Decimal(fields['tax']['value'])
+        if abs(expected-Decimal(fields['total']['value']))>Decimal('.01'): issues.append('total_mismatch')
+    return issues
+
 def extract(tokens):
     output={}
     patterns={'number':r'(?:Number|Invoice No|Order No|Receipt No)\s*[:#]\s*(.+)','date':r'Date\s*:\s*(.+)','subtotal':r'Subtotal\s*:\s*(.+)','tax':r'Tax\s*:\s*(.+)','total':r'Total\s*:\s*(.+)'}
