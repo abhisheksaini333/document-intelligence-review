@@ -25,6 +25,12 @@ class Store:
         with self.connect() as c:
             c.execute('INSERT OR IGNORE INTO documents(id,digest,filename,image_path,created) VALUES(?,?,?,?,?)',(uuid.uuid4().hex,digest,filename,str(image_path),time.time()))
             return self.decode(c.execute('SELECT * FROM documents WHERE digest=?',(digest,)).fetchone())
+    def result(self,identifier,version,payload):
+        encoded=json.dumps(payload,allow_nan=False)
+        with self.connect() as c:
+            cursor=c.execute("UPDATE documents SET payload=?,status='review',version=version+1 WHERE id=? AND version=?",(encoded,identifier,version))
+            if cursor.rowcount!=1: raise Conflict('Document changed; reload before saving')
+        return self.get(identifier)
     def list(self,status=None,limit=50,offset=0):
         if type(limit) is not int or not 1<=limit<=200 or type(offset) is not int or offset<0: raise ValueError('Invalid pagination')
         if status not in (None,'queued','processing','review','approved','rejected','failed'): raise ValueError('Invalid status')
