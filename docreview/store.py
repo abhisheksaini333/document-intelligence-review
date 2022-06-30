@@ -25,6 +25,11 @@ class Store:
         with self.connect() as c:
             c.execute('INSERT OR IGNORE INTO documents(id,digest,filename,image_path,created) VALUES(?,?,?,?,?)',(uuid.uuid4().hex,digest,filename,str(image_path),time.time()))
             return self.decode(c.execute('SELECT * FROM documents WHERE digest=?',(digest,)).fetchone())
+    def summary(self):
+        result=dict.fromkeys(('queued','processing','review','approved','rejected','failed'),0)
+        with self.connect() as c:
+            result.update({r[0]:r[1] for r in c.execute('SELECT status,COUNT(*) FROM documents GROUP BY status')})
+        return result
     def result(self,identifier,version,payload):
         encoded=json.dumps(payload,allow_nan=False)
         with self.connect() as c:
