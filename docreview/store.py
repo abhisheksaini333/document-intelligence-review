@@ -25,6 +25,28 @@ class Store:
         with self.connect() as c:
             c.execute('INSERT OR IGNORE INTO documents(id,digest,filename,image_path,created) VALUES(?,?,?,?,?)',(uuid.uuid4().hex,digest,filename,str(image_path),time.time()))
             return self.decode(c.execute('SELECT * FROM documents WHERE digest=?',(digest,)).fetchone())
+    def review(self,identifier,version,fields,label,reviewer,action):
+        from .review import validate_corrections
+        corrections=validate_corrections(fields,label)
+        if not isinstance(reviewer,str) or not 1<=len(reviewer.strip())<=80 or action not in ('save','approve','reject'): raise ValueError('Reviewer and action required')
+        with self.connect() as c:
+            c.execute('BEGIN IMMEDIATE')
+            row=self.decode(c.execute('SELECT * FROM documents WHERE id=?',(identifier,)).fetchone())
+            if row['version']!=version or row['status'] not in ('review','approved','rejected'): raise Conflict('Document changed; reload before saving')
+            payload=row['payload'];payload.setdefault('fields',{})
+            for name,value in corrections.items():
+                previous=payload['fields'].get(name,{})
+                payload['fields'][name]={**previous,'value':value,'confidence':1.,'method':'human-review','reviewer':reviewer}
+            payload['label']=label
+            status={'save':'review','approve':'approved','reject':'rejected'}[action]
+            c.execute('UPDATE documents SET payload=?,status=?,version=version+1 WHERE id=?',(json.dumps(payload),status,identifier))
+            c.execute('CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY,document_id TEXT,version INTEGER,reviewer TEXT,action TEXT,changes TEXT,created REAL)')
+            c.execute('INSERT INTO events(document_id,version,reviewer,action,changes,created) VALUES(?,?,?,?,?,?)',(identifier,version+1,reviewer,action,json.dumps({'fields':corrections,'label':label}),time.time()))
+        return self.get(identifier)
+    def events(self,identifier):
+        with self.connect() as c:
+            exists=c.execute("SELECT 1 FROM sqlite_master WHERE name='events'").fetchone()
+            return [dict(r) for r in c.execute('SELECT * FROM events WHERE document_id=? ORDER BY id',(identifier,))] if exists else []
     def summary(self):
         result=dict.fromkeys(('queued','processing','review','approved','rejected','failed'),0)
         with self.connect() as c:
