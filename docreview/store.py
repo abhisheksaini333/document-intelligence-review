@@ -37,6 +37,9 @@ class Store:
             for name,value in corrections.items():
                 previous=payload['fields'].get(name,{})
                 payload['fields'][name]={**previous,'value':value,'confidence':1.,'method':'human-review','reviewer':reviewer}
+            from .extraction import field_issues
+            payload['issues']=field_issues(payload['fields'])
+            if action=='approve' and payload['issues']: raise ValueError('Resolve field issues before approval: '+', '.join(payload['issues']))
             payload['label']=label
             status={'save':'review','approve':'approved','reject':'rejected'}[action]
             c.execute('UPDATE documents SET payload=?,status=?,version=version+1 WHERE id=?',(json.dumps(payload),status,identifier))
