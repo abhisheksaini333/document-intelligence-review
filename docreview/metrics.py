@@ -1,5 +1,20 @@
 import math
 
+def calibration(actual,probabilities,bins=10):
+    if not actual or len(actual)!=len(probabilities) or not 1<=bins<=100: raise ValueError('Aligned probabilities required')
+    buckets=[[] for _ in range(bins)];brier=0
+    for label,probs in zip(actual,probabilities):
+        if label not in probs or any(not math.isfinite(v) or not 0<=v<=1 for v in probs.values()) or abs(sum(probs.values())-1)>1e-6: raise ValueError('Invalid probability distribution')
+        predicted=max(probs,key=probs.get);confidence=probs[predicted]
+        buckets[min(int(confidence*bins),bins-1)].append((confidence,int(predicted==label)))
+        brier+=sum((v-int(k==label))**2 for k,v in probs.items())
+    result=[];ece=0
+    for i,bucket in enumerate(buckets):
+        confidence=sum(x[0] for x in bucket)/len(bucket) if bucket else 0;accuracy=sum(x[1] for x in bucket)/len(bucket) if bucket else 0
+        ece+=len(bucket)/len(actual)*abs(confidence-accuracy)
+        result.append({'lower':i/bins,'upper':(i+1)/bins,'count':len(bucket),'confidence':confidence,'accuracy':accuracy})
+    return {'ece':ece,'brier':brier/len(actual),'bins':result}
+
 def field_accuracy(expected,extracted):
     if not expected or len(expected)!=len(extracted): raise ValueError('Aligned field records required')
     fields={}
