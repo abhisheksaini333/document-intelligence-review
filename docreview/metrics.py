@@ -1,5 +1,14 @@
 import math
 
+def coverage_curve(actual,predictions,thresholds=(0,.5,.7,.8,.9,.95,1)):
+    if not actual or len(actual)!=len(predictions): raise ValueError('Aligned predictions required')
+    result=[]
+    for threshold in thresholds:
+        if not 0<=threshold<=1: raise ValueError('Invalid confidence threshold')
+        selected=[(a,p) for a,p in zip(actual,predictions) if p['confidence']>=threshold]
+        result.append({'threshold':threshold,'coverage':len(selected)/len(actual),'accepted':len(selected),'risk':sum(a!=p['label'] for a,p in selected)/len(selected) if selected else None})
+    return result
+
 def calibration(actual,probabilities,bins=10):
     if not actual or len(actual)!=len(probabilities) or not 1<=bins<=100: raise ValueError('Aligned probabilities required')
     buckets=[[] for _ in range(bins)];brier=0
