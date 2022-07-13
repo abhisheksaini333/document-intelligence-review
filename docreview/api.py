@@ -11,6 +11,27 @@ def create_server(directory,host='127.0.0.1',port=4800,token=None):
         def log_message(self,*args): pass
         def respond(self,status,data):
             body=json.dumps(data,allow_nan=False).encode();self.send_response(status);self.send_header('Content-Type','application/json; charset=utf-8');self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body)
+        def body(self):
+            self.connection.settimeout(10)
+            if self.headers.get('Transfer-Encoding'): raise ValueError('Chunked requests are unsupported')
+            if self.headers.get('Content-Type','').split(';')[0]!='application/json': raise ValueError('Use application/json')
+            length=int(self.headers.get('Content-Length','0'))
+            if not 1<=length<=12*1024*1024: raise ValueError('Invalid request size')
+            raw=self.rfile.read(length)
+            if len(raw)!=length: raise ValueError('Incomplete request body')
+            body=json.loads(raw)
+            if not isinstance(body,dict): raise ValueError('JSON object required')
+            return body
+        def do_POST(self):
+            try:
+                body=self.body();path=urlsplit(self.path).path
+                if path=='/api/documents':
+                    data=base64.b64decode(body['image'],validate=True)
+                    return self.respond(201,pipeline.ingest(data,body['filename']))
+                self.respond(404,{'error':'Not found'})
+            except Conflict as exc:self.respond(409,{'error':str(exc)})
+            except (ValueError,KeyError,TypeError) as exc:self.respond(400,{'error':str(exc)})
+            except TimeoutError:self.respond(408,{'error':'Request deadline exceeded'})
         def do_GET(self):
             try:
                 path=urlsplit(self.path).path;params=parse_qs(urlsplit(self.path).query)
