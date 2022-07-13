@@ -1,5 +1,20 @@
 import math
 
+def select_examples(rows,limit=20):
+    if not 1<=limit<=200: raise ValueError('Invalid selection limit')
+    ranked=[]
+    for row in rows:
+        probabilities=row['probabilities']
+        if not probabilities or any(not math.isfinite(p) or not 0<=p<=1 for p in probabilities.values()) or abs(sum(probabilities.values())-1)>1e-6: raise ValueError('Invalid probabilities')
+        entropy=-sum(p*math.log(p) for p in probabilities.values() if p>0)
+        ranked.append((entropy,row['id'],row))
+    selected=[];seen=set()
+    for entropy,_,row in sorted(ranked,key=lambda x:(-x[0],x[1])):
+        if row['digest'] in seen: continue
+        seen.add(row['digest']);selected.append({**row,'entropy':entropy})
+        if len(selected)>=limit: break
+    return selected
+
 def export_corrections(store):
     result=[];offset=0
     while True:
