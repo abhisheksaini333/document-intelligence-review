@@ -42,6 +42,11 @@ def create_server(directory,host='127.0.0.1',port=4800,token=None):
                 if path=='/api/health': return self.respond(200,{'status':'ok'})
                 if path=='/api/summary': return self.respond(200,pipeline.store.summary())
                 if path=='/api/documents': return self.respond(200,pipeline.store.list(status=params.get('status',[None])[0],limit=int(params.get('limit',['50'])[0]),offset=int(params.get('offset',['0'])[0])))
+                if path.startswith('/api/documents/') and path.endswith('/image'):
+                    from .ingest import identity,image_type
+                    row=pipeline.store.get(path.split('/')[3]);data=Path(row['image_path']).read_bytes()
+                    if identity(data)!=row['digest']: raise ValueError('Image integrity check failed')
+                    self.send_response(200);self.send_header('Content-Type','image/'+image_type(data).replace('jpg','jpeg'));self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data);return
                 if path.startswith('/api/documents/'): return self.respond(200,pipeline.store.get(path.split('/')[3]))
                 self.respond(404,{'error':'Not found'})
             except KeyError: self.respond(404,{'error':'Document not found'})
