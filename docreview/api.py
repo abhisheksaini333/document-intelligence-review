@@ -28,6 +28,10 @@ def create_server(directory,host='127.0.0.1',port=4800,token=None):
                 if path=='/api/documents':
                     data=base64.b64decode(body['image'],validate=True)
                     return self.respond(201,pipeline.ingest(data,body['filename']))
+                parts=path.strip('/').split('/')
+                if len(parts)==4 and parts[:2]==['api','documents']:
+                    if parts[3]=='process': return self.respond(200,pipeline.process(parts[2]))
+                    if parts[3]=='review': return self.respond(200,pipeline.store.review(parts[2],body['version'],body['fields'],body['label'],body['reviewer'],body['action']))
                 self.respond(404,{'error':'Not found'})
             except Conflict as exc:self.respond(409,{'error':str(exc)})
             except (ValueError,KeyError,TypeError) as exc:self.respond(400,{'error':str(exc)})
