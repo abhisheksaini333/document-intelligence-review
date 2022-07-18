@@ -24,6 +24,10 @@ def create_server(directory,host='127.0.0.1',port=4800,token=None):
             return body
         def do_POST(self):
             try:
+                import hmac
+                origin=self.headers.get('Origin')
+                if origin and urlsplit(origin).netloc!=self.headers.get('Host'): return self.respond(403,{'error':'Cross-origin writes are forbidden'})
+                if token and not hmac.compare_digest(self.headers.get('X-Review-Token',''),token): return self.respond(401,{'error':'Review access token required'})
                 body=self.body();path=urlsplit(self.path).path
                 if path=='/api/documents':
                     data=base64.b64decode(body['image'],validate=True)
