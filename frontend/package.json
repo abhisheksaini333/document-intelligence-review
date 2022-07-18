@@ -1,0 +1,1 @@
+{"name":"document-review-workstation","version":"0.1.0","private":true,"type":"module","scripts":{"dev":"vite --host 127.0.0.1 --port 4801","build":"vite build","test":"node --test tests/*.test.mjs","test:e2e":"playwright test"},"dependencies":{"react":"18.1.0","react-dom":"18.1.0"},"devDependencies":{"vite":"2.9.13","@playwright/test":"1.22.2"}}
