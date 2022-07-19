@@ -8,7 +8,15 @@ def main():
     sub=parser.add_subparsers(dest='command',required=True)
     sub.add_parser('fixtures',help='Print labeled synthetic documents')
     demo=sub.add_parser('demo',help='Render and process a synthetic invoice');demo.add_argument('--data',default='data')
+    serve=sub.add_parser('serve',help='Run the local review API');serve.add_argument('--data',default='data');serve.add_argument('--host',default='127.0.0.1');serve.add_argument('--port',type=int,default=4800)
     args=parser.parse_args()
+    if args.command=='serve':
+        import os
+        from .api import create_server
+        server=create_server(args.data,args.host,args.port,os.environ.get('REVIEW_TOKEN'))
+        try: server.serve_forever()
+        except KeyboardInterrupt: pass
+        finally: server.server_close()
     if args.command=='demo':
         from pathlib import Path
         from .fixtures import render
