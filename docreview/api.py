@@ -54,7 +54,9 @@ def create_server(directory,host='127.0.0.1',port=4800,token=None):
                     from .ingest import identity,image_type
                     row=pipeline.store.get(path.split('/')[3]);data=Path(row['image_path']).read_bytes()
                     if identity(data)!=row['digest']: raise ValueError('Image integrity check failed')
-                    self.send_response(200);self.send_header('Content-Type','image/'+image_type(data).replace('jpg','jpeg'));self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data);return
+                    from .ingest import preview
+                    data=preview(data,int(params.get('page',['1'])[0]))
+                    self.send_response(200);self.send_header('Content-Type','image/png');self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data);return
                 if path.startswith('/api/documents/'): return self.respond(200,pipeline.store.get(path.split('/')[3]))
                 self.respond(404,{'error':'Not found'})
             except KeyError: self.respond(404,{'error':'Document not found'})

@@ -2,6 +2,15 @@ import hashlib, os, tempfile
 from pathlib import Path
 MAX_BYTES=8*1024*1024
 
+def preview(data,page=1):
+    import io
+    from PIL import Image
+    info=validate_image(data)
+    if type(page) is not int or not 1<=page<=info['pages']: raise ValueError('Page does not exist')
+    if image_type(data)=='png' and page==1:return data
+    with Image.open(io.BytesIO(data)) as image:
+        image.seek(page-1);output=io.BytesIO();image.convert('RGB').save(output,format='PNG');return output.getvalue()
+
 def validate_image(data):
     import io,warnings
     from PIL import Image
