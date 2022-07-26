@@ -36,7 +36,7 @@ class Store:
             payload=row['payload'];payload.setdefault('fields',{})
             for name,value in corrections.items():
                 previous=payload['fields'].get(name,{})
-                payload['fields'][name]={**previous,'value':value,'confidence':1.,'method':'human-review','reviewer':reviewer}
+                payload['fields'][name]={**previous,'source_value':previous.get('source_value',previous.get('value')),'value':value,'confidence':1.,'method':'human-review','reviewer':reviewer}
             from .extraction import field_issues
             payload['issues']=field_issues(payload['fields'])
             if action=='approve' and payload['issues']: raise ValueError('Resolve field issues before approval: '+', '.join(payload['issues']))
