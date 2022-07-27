@@ -15,4 +15,6 @@ class Pipeline:
             from .baseline import predict
             prediction=predict(self.model,[text])[0]
         payload={'text':text,'tokens':[t.to_dict() for t in tokens],'fields':fields,'issues':field_issues(fields),'prediction':prediction,'pages':sorted({t.page for t in tokens})}
+        from .review import route
+        payload['routing']=route(payload)
         return self.store.result(identifier,row['version'],payload)
