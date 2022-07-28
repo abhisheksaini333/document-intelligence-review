@@ -10,7 +10,10 @@ class Pipeline:
         validate_image(data);path=save_image(self.directory/'images',data)
         return self.store.create(identity(data),filename,path)
     def process(self,identifier):
-        row=self.store.get(identifier);tokens=recognize(row['image_path']);fields=extract(tokens);text='\n'.join(line['text'] for line in lines(tokens));prediction=None
+        from .store import Conflict
+        row=self.store.get(identifier)
+        if row['status'] not in ('queued','processing','failed'): raise Conflict('Reviewed documents cannot be reprocessed')
+        tokens=recognize(row['image_path']);fields=extract(tokens);text='\n'.join(line['text'] for line in lines(tokens));prediction=None
         if self.model is not None:
             from .baseline import predict
             prediction=predict(self.model,[text])[0]
