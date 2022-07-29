@@ -5,6 +5,14 @@ from pathlib import Path
 from .pipeline import Pipeline
 from .store import Conflict
 
+def static_asset(directory,url):
+    import mimetypes
+    from urllib.parse import unquote
+    root=Path(directory).resolve();relative=unquote(url).lstrip('/') or 'index.html';target=(root/relative).resolve()
+    if not target.is_relative_to(root):raise ValueError('Invalid asset path')
+    if not target.is_file():raise KeyError('Asset not found')
+    return target.read_bytes(),mimetypes.guess_type(str(target))[0] or 'application/octet-stream'
+
 def create_server(directory,host='127.0.0.1',port=4800,token=None):
     pipeline=Pipeline(directory)
     class Handler(BaseHTTPRequestHandler):
@@ -43,6 +51,9 @@ def create_server(directory,host='127.0.0.1',port=4800,token=None):
         def do_GET(self):
             try:
                 path=urlsplit(self.path).path;params=parse_qs(urlsplit(self.path).query)
+                if not path.startswith('/api/'):
+                    data,content_type=static_asset(Path(__file__).resolve().parent.parent/'frontend'/'dist',path)
+                    self.send_response(200);self.send_header('Content-Type',content_type);self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data);return
                 if path=='/api/feedback':
                     from .feedback import export_corrections
                     return self.respond(200,export_corrections(pipeline.store))
