@@ -25,6 +25,17 @@ class Store:
         with self.connect() as c:
             c.execute('INSERT OR IGNORE INTO documents(id,digest,filename,image_path,created) VALUES(?,?,?,?,?)',(uuid.uuid4().hex,digest,filename,str(image_path),time.time()))
             return self.decode(c.execute('SELECT * FROM documents WHERE digest=?',(digest,)).fetchone())
+    def claim(self,worker,now=None,lease_seconds=60):
+        if not worker or not 1<=lease_seconds<=3600:raise ValueError('Invalid worker lease')
+        now=time.time() if now is None else now
+        with self.connect() as c:
+            c.execute('BEGIN IMMEDIATE')
+            c.execute('CREATE TABLE IF NOT EXISTS jobs(document_id TEXT PRIMARY KEY,worker TEXT,expires REAL,attempts INTEGER DEFAULT 0,error TEXT)')
+            row=c.execute("SELECT d.* FROM documents d LEFT JOIN jobs j ON j.document_id=d.id WHERE d.status='queued' OR (d.status='processing' AND j.expires<=?) ORDER BY d.created,d.id LIMIT 1",(now,)).fetchone()
+            if row is None:return None
+            c.execute("UPDATE documents SET status='processing',version=version+1 WHERE id=?",(row['id'],))
+            c.execute('INSERT INTO jobs(document_id,worker,expires,attempts) VALUES(?,?,?,1) ON CONFLICT(document_id) DO UPDATE SET worker=excluded.worker,expires=excluded.expires,attempts=jobs.attempts+1',(row['id'],worker,now+lease_seconds))
+            return self.decode(c.execute('SELECT * FROM documents WHERE id=?',(row['id'],)).fetchone())
     def review(self,identifier,version,fields,label,reviewer,action):
         from .review import validate_corrections
         corrections=validate_corrections(fields,label)
