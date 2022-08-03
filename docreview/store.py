@@ -25,6 +25,10 @@ class Store:
         with self.connect() as c:
             c.execute('INSERT OR IGNORE INTO documents(id,digest,filename,image_path,created) VALUES(?,?,?,?,?)',(uuid.uuid4().hex,digest,filename,str(image_path),time.time()))
             return self.decode(c.execute('SELECT * FROM documents WHERE digest=?',(digest,)).fetchone())
+    def lease(self,identifier):
+        with self.connect() as c:
+            row=c.execute('SELECT * FROM jobs WHERE document_id=?',(identifier,)).fetchone()
+            return dict(row) if row else None
     def claim(self,worker,now=None,lease_seconds=60):
         if not worker or not 1<=lease_seconds<=3600:raise ValueError('Invalid worker lease')
         now=time.time() if now is None else now
