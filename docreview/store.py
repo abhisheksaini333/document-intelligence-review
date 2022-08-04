@@ -25,6 +25,15 @@ class Store:
         with self.connect() as c:
             c.execute('INSERT OR IGNORE INTO documents(id,digest,filename,image_path,created) VALUES(?,?,?,?,?)',(uuid.uuid4().hex,digest,filename,str(image_path),time.time()))
             return self.decode(c.execute('SELECT * FROM documents WHERE digest=?',(digest,)).fetchone())
+    def fail(self,identifier,version,error,max_attempts=3):
+        if not 1<=max_attempts<=10:raise ValueError('Invalid retry budget')
+        with self.connect() as c:
+            c.execute('BEGIN IMMEDIATE');job=c.execute('SELECT * FROM jobs WHERE document_id=?',(identifier,)).fetchone()
+            status='failed' if job and job['attempts']>=max_attempts else 'queued'
+            cursor=c.execute('UPDATE documents SET status=?,version=version+1 WHERE id=? AND version=?',(status,identifier,version))
+            if cursor.rowcount!=1:raise Conflict('Worker lease is stale')
+            c.execute('UPDATE jobs SET error=? WHERE document_id=?',(str(error)[:200],identifier))
+        return self.get(identifier)
     def lease(self,identifier):
         with self.connect() as c:
             row=c.execute('SELECT * FROM jobs WHERE document_id=?',(identifier,)).fetchone()
