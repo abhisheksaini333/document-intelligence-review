@@ -25,6 +25,11 @@ class Store:
         with self.connect() as c:
             c.execute('INSERT OR IGNORE INTO documents(id,digest,filename,image_path,created) VALUES(?,?,?,?,?)',(uuid.uuid4().hex,digest,filename,str(image_path),time.time()))
             return self.decode(c.execute('SELECT * FROM documents WHERE digest=?',(digest,)).fetchone())
+    def cancel(self,identifier,version):
+        with self.connect() as c:
+            cursor=c.execute("UPDATE documents SET status='rejected',version=version+1 WHERE id=? AND version=? AND status IN ('queued','processing','failed')",(identifier,version))
+            if cursor.rowcount!=1:raise Conflict('Document is no longer cancellable')
+        return self.get(identifier)
     def fail(self,identifier,version,error,max_attempts=3):
         if not 1<=max_attempts<=10:raise ValueError('Invalid retry budget')
         with self.connect() as c:
