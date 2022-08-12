@@ -12,6 +12,7 @@ class Pipeline:
     def process(self,identifier,expected_version=None):
         from .store import Conflict
         row=self.store.get(identifier)
+        if expected_version is not None and row['version']!=expected_version:raise Conflict('Worker lease is stale')
         if row['status'] not in ('queued','processing','failed'): raise Conflict('Reviewed documents cannot be reprocessed')
         tokens=recognize(row['image_path']);fields=extract(tokens);text='\n'.join(line['text'] for line in lines(tokens));prediction=None
         if self.model is not None:
