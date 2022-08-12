@@ -9,7 +9,7 @@ class Pipeline:
     def ingest(self,data,filename):
         validate_image(data);path=save_image(self.directory/'images',data)
         return self.store.create(identity(data),filename,path)
-    def process(self,identifier):
+    def process(self,identifier,expected_version=None):
         from .store import Conflict
         row=self.store.get(identifier)
         if row['status'] not in ('queued','processing','failed'): raise Conflict('Reviewed documents cannot be reprocessed')
