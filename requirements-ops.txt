@@ -1,0 +1,6 @@
+-r requirements-model.txt
+mlflow==1.26.1
+bentoml==1.0.0
+protobuf==3.20.1
+SQLAlchemy==1.4.40
+packaging==21.3
