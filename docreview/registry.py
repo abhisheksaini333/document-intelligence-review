@@ -14,6 +14,14 @@ class Registry:
         finally:
             if stage.exists():shutil.rmtree(stage)
         return version
+    def rollback(self,expected_revision):
+        current=self.active()
+        if not current['previous']:raise ValueError('No previous version to restore')
+        return self.activate(current['previous'],expected_revision)
+    def classify(self,texts):
+        current=self.active()
+        if not current['version']:raise ValueError('No active model')
+        return {**current,'predictions':predict(load(self.directory/current['version']),texts)}
     def active(self):
         path=self.directory/'active.json'
         return json.loads(path.read_text()) if path.exists() else {'revision':0,'version':None,'previous':None}
