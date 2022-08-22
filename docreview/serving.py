@@ -1,5 +1,9 @@
 from .baseline import load,predict
 
+def classify_request(registry,body):
+    if not isinstance(body,dict) or not isinstance(body.get('texts'),list) or not 1<=len(body['texts'])<=128:raise ValueError('texts must contain 1 to 128 strings')
+    return registry.classify(body['texts'])
+
 def export_bento(directory):
     import bentoml
     import bentoml.sklearn
