@@ -1,0 +1,6 @@
+service: "service:svc"
+include:
+  - "service.py"
+  - "docreview/*.py"
+python:
+  requirements_txt: "requirements-ops.txt"
