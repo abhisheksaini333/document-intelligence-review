@@ -1,6 +1,13 @@
 from pathlib import Path
 from .benchmark import baseline_benchmark
 
+def restore_run(tracking,run_id):
+    from mlflow.tracking import MlflowClient
+    from .baseline import load
+    client=MlflowClient(tracking_uri=Path(tracking).resolve().as_uri())
+    path=client.download_artifacts(run_id,'evaluation/baseline')
+    return load(path)
+
 def track_baseline(directory,tracking):
     import mlflow
     from mlflow.tracking import MlflowClient
