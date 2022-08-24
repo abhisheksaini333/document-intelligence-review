@@ -9,7 +9,21 @@ def main():
     sub.add_parser('fixtures',help='Print labeled synthetic documents')
     demo=sub.add_parser('demo',help='Render and process a synthetic invoice');demo.add_argument('--data',default='data')
     serve=sub.add_parser('serve',help='Run the local review API');serve.add_argument('--data',default='data');serve.add_argument('--host',default='127.0.0.1');serve.add_argument('--port',type=int,default=4800)
+    train=sub.add_parser('train',help='Train and evaluate the fixed baseline');train.add_argument('--output',default='artifacts/baseline-run')
+    registry=sub.add_parser('registry',help='Install, activate or roll back a verified baseline');registry.add_argument('operation',choices=['install','activate','rollback','status']);registry.add_argument('--directory',default='data/registry');registry.add_argument('--version');registry.add_argument('--artifact');registry.add_argument('--revision',type=int,default=0)
     args=parser.parse_args()
+    if args.command=='train':
+        from .benchmark import baseline_benchmark
+        print(json.dumps(baseline_benchmark(args.output),indent=2))
+    if args.command=='registry':
+        from .registry import Registry
+        from .baseline import load
+        registry=Registry(args.directory)
+        if args.operation=='install':result=registry.install(args.version,load(args.artifact),{'artifact':args.artifact})
+        elif args.operation=='activate':result=registry.activate(args.version,args.revision)
+        elif args.operation=='rollback':result=registry.rollback(args.revision)
+        else:result={'active':registry.active(),'versions':registry.versions()}
+        print(json.dumps(result,indent=2))
     if args.command=='serve':
         import os
         from .api import create_server
