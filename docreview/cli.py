@@ -11,7 +11,17 @@ def main():
     serve=sub.add_parser('serve',help='Run the local review API');serve.add_argument('--data',default='data');serve.add_argument('--host',default='127.0.0.1');serve.add_argument('--port',type=int,default=4800)
     train=sub.add_parser('train',help='Train and evaluate the fixed baseline');train.add_argument('--output',default='artifacts/baseline-run')
     registry=sub.add_parser('registry',help='Install, activate or roll back a verified baseline');registry.add_argument('operation',choices=['install','activate','rollback','status']);registry.add_argument('--directory',default='data/registry');registry.add_argument('--version');registry.add_argument('--artifact');registry.add_argument('--revision',type=int,default=0)
+    worker=sub.add_parser('worker',help='Process leased OCR jobs');worker.add_argument('--data',default='data');worker.add_argument('--name',default='local-worker');worker.add_argument('--once',action='store_true')
     args=parser.parse_args()
+    if args.command=='worker':
+        import time
+        from .pipeline import Pipeline
+        from .worker import once
+        pipeline=Pipeline(args.data)
+        while True:
+            result=once(pipeline,args.name)
+            if args.once:print(json.dumps(result));break
+            if result is None:time.sleep(1)
     if args.command=='train':
         from .benchmark import baseline_benchmark
         print(json.dumps(baseline_benchmark(args.output),indent=2))
