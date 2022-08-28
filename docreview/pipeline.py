@@ -18,7 +18,11 @@ class Pipeline:
         if self.model is not None:
             from .baseline import predict
             prediction=predict(self.model,[text])[0]
-        payload={'text':text,'tokens':[t.to_dict() for t in tokens],'fields':fields,'issues':field_issues(fields),'prediction':prediction,'pages':sorted({t.page for t in tokens})}
+        from .registry import Registry
+        registry=Registry(self.directory/'registry');model_version=None
+        if registry.active()['version']:
+            classified=registry.classify([text]);prediction=classified['predictions'][0];model_version=classified['version']
+        payload={'model_version':model_version,'text':text,'tokens':[t.to_dict() for t in tokens],'fields':fields,'issues':field_issues(fields),'prediction':prediction,'pages':sorted({t.page for t in tokens})}
         from .review import route
         payload['routing']=route(payload)
         return self.store.result(identifier,row['version'],payload)
