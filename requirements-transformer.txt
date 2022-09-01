@@ -1,0 +1,4 @@
+-r requirements-ops.txt
+torch==1.12.1
+transformers==4.19.2
+tokenizers==0.12.1
