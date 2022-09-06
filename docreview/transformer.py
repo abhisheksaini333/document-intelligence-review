@@ -17,6 +17,29 @@ class TrainingConfig:
     def __post_init__(self):
         if not 1<=self.epochs<=20 or not 1<=self.batch_size<=32 or not 16<=self.max_length<=512 or not math.isfinite(self.learning_rate) or not 0<self.learning_rate<=.01 or not 1<=self.threads<=4:raise ValueError('Invalid training budget')
 
+def train_transformer(rows,source,output,config=None):
+    config=config or TrainingConfig();labels=sorted({r['label'] for r in rows})
+    if len(labels)<2:raise ValueError('Training requires at least two classes')
+    if any(not r['text'].strip() for r in rows):raise ValueError('Empty training text')
+    manifest=verify_source(source)
+    import numpy as np
+    import torch
+    from transformers import DistilBertTokenizerFast,DistilBertForSequenceClassification
+    torch.set_num_threads(config.threads);torch.manual_seed(config.seed);np.random.seed(config.seed);random.seed(config.seed)
+    tokenizer=DistilBertTokenizerFast.from_pretrained(source,local_files_only=True)
+    model=DistilBertForSequenceClassification.from_pretrained(source,num_labels=len(labels),id2label=dict(enumerate(labels)),label2id={label:i for i,label in enumerate(labels)},local_files_only=True)
+    encoded=tokenizer([r['text'] for r in rows],padding=True,truncation=True,max_length=config.max_length,return_tensors='pt');targets=torch.tensor([labels.index(r['label']) for r in rows])
+    optimizer=torch.optim.AdamW(model.parameters(),lr=config.learning_rate);generator=torch.Generator().manual_seed(config.seed);history=[]
+    model.train()
+    for epoch in range(config.epochs):
+        losses=[]
+        for indices in torch.randperm(len(rows),generator=generator).split(config.batch_size):
+            optimizer.zero_grad();batch={k:v[indices] for k,v in encoded.items()};loss=model(**batch,labels=targets[indices]).loss;loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),1.0);optimizer.step();losses.append(float(loss.detach()))
+        history.append(sum(losses)/len(losses));print(json.dumps({'epoch':epoch+1,'loss':history[-1]}),flush=True)
+    output=Path(output);output.mkdir(parents=True,exist_ok=True);model.save_pretrained(output);tokenizer.save_pretrained(output)
+    metadata={'source_revision':manifest['revision'],'labels':labels,'config':asdict(config),'train_ids':[r['id'] for r in rows],'train_families':sorted({r['family'] for r in rows}),'loss':history}
+    (output/'training.json').write_text(json.dumps(metadata,indent=2));return metadata
+
 def verify_source(directory):
     directory=Path(directory);manifest=json.loads((directory/'source-manifest.json').read_text())
     if len(manifest['revision'])!=40 or not manifest['files']:raise ValueError('Invalid source manifest')
