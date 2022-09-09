@@ -17,6 +17,24 @@ class TrainingConfig:
     def __post_init__(self):
         if not 1<=self.epochs<=20 or not 1<=self.batch_size<=32 or not 16<=self.max_length<=512 or not math.isfinite(self.learning_rate) or not 0<self.learning_rate<=.01 or not 1<=self.threads<=4:raise ValueError('Invalid training budget')
 
+class TransformerClassifier:
+    def __init__(self,directory,threads=2):
+        import torch
+        from transformers import DistilBertTokenizerFast,DistilBertForSequenceClassification
+        torch.set_num_threads(threads);self.torch=torch;self.tokenizer=DistilBertTokenizerFast.from_pretrained(directory,local_files_only=True);self.model=DistilBertForSequenceClassification.from_pretrained(directory,local_files_only=True);self.model.eval()
+        self.metadata=json.loads((Path(directory)/'training.json').read_text());self.labels=self.metadata['labels']
+    def predict(self,texts,temperature=1.):
+        if not isinstance(texts,list) or not 1<=len(texts)<=128 or any(not isinstance(t,str) or not t.strip() or len(t)>100000 for t in texts):raise ValueError('Supply 1 to 128 nonempty bounded texts')
+        if not math.isfinite(temperature) or temperature<=0:raise ValueError('Invalid temperature')
+        results=[]
+        with self.torch.no_grad():
+            for start in range(0,len(texts),4):
+                encoded=self.tokenizer(texts[start:start+4],padding=True,truncation=True,max_length=self.metadata['config']['max_length'],return_tensors='pt')
+                logits=self.model(**encoded).logits;probabilities=self.torch.softmax(logits/temperature,dim=-1).tolist()
+                for scores in probabilities:
+                    index=max(range(len(scores)),key=scores.__getitem__);results.append({'label':self.labels[index],'confidence':scores[index],'probabilities':dict(zip(self.labels,scores))})
+        return results
+
 def train_transformer(rows,source,output,config=None):
     config=config or TrainingConfig();labels=sorted({r['label'] for r in rows})
     if len(labels)<2:raise ValueError('Training requires at least two classes')
