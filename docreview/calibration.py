@@ -1,5 +1,12 @@
 import math
 
+def choose_threshold(actual,predictions,max_risk=.05):
+    from .metrics import coverage_curve
+    if not 0<=max_risk<=1:raise ValueError('Invalid risk budget')
+    thresholds=sorted({0.,1.}|{p['confidence'] for p in predictions})
+    candidates=[row for row in coverage_curve(actual,predictions,thresholds) if row['risk'] is not None and row['risk']<=max_risk]
+    return max(candidates,key=lambda r:(r['coverage'],-r['threshold'])) if candidates else {'threshold':1.,'coverage':0.,'accepted':0,'risk':None,'abstain_all':True}
+
 def temperature_scale(probabilities,temperature):
     if not math.isfinite(temperature) or temperature<=0:raise ValueError('Invalid temperature')
     if not probabilities or any(not math.isfinite(p) or not 0<=p<=1 for p in probabilities.values()) or abs(sum(probabilities.values())-1)>1e-6:raise ValueError('Invalid probabilities')
