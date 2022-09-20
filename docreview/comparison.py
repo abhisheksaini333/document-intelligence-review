@@ -7,6 +7,13 @@ from .fixtures import records
 from .baseline import train,predict,save
 from .transformer import train_transformer,TransformerClassifier,TrainingConfig
 
+def promotion_decision(baseline,candidate,min_gain=.01,max_ece_regression=.02):
+    gain=candidate['classification']['macro_f1']-baseline['classification']['macro_f1'];ece_delta=candidate['calibration']['ece']-baseline['calibration']['ece']
+    reasons=[]
+    if gain<min_gain:reasons.append('insufficient_f1_gain')
+    if ece_delta>max_ece_regression:reasons.append('calibration_regression')
+    return {'promote':not reasons,'f1_gain':gain,'ece_delta':ece_delta,'reasons':reasons}
+
 def evaluate_predictions(rows,predictions):
     labels=[r['label'] for r in rows]
     return {'classification':classification(labels,[p['label'] for p in predictions]),'calibration':calibration(labels,[p['probabilities'] for p in predictions]),'coverage':coverage_curve(labels,predictions)}
