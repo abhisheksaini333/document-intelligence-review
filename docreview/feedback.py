@@ -1,5 +1,14 @@
 import math
 
+def merge_training_feedback(training,feedback,held_out):
+    from .fixtures import LABELS
+    held_ids={r['id'] for r in held_out};held_families={r['family'] for r in held_out};held_text={' '.join(r['text'].lower().split()) for r in held_out};result={r['id']:dict(r) for r in training}
+    for row in feedback:
+        if not row.get('family') or row.get('label') not in LABELS or not row.get('text','').strip():raise ValueError('Reviewed rows require an assigned family, label and text')
+        if row['id'] in held_ids or row['family'] in held_families or ' '.join(row['text'].lower().split()) in held_text:raise ValueError('Feedback overlaps a held-out family or document')
+        result[row['id']]=dict(row)
+    return [result[key] for key in sorted(result)]
+
 def select_examples(rows,limit=20):
     if not 1<=limit<=200: raise ValueError('Invalid selection limit')
     ranked=[]
