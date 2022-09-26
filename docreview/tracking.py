@@ -1,6 +1,18 @@
 from pathlib import Path
 from .benchmark import baseline_benchmark
 
+def track_comparison(report,tracking):
+    import mlflow,tempfile,json
+    from mlflow.tracking import MlflowClient
+    uri=Path(tracking).resolve().as_uri();mlflow.set_tracking_uri(uri);mlflow.set_experiment('document-model-comparison')
+    with mlflow.start_run() as run:
+        mlflow.log_param('dataset_sha256',report['dataset_sha256'])
+        mlflow.log_metrics({name+'_macro_f1':result['raw']['classification']['macro_f1'] for name,result in report['models'].items()})
+        with tempfile.TemporaryDirectory() as d:
+            path=Path(d)/'comparison.json';path.write_text(json.dumps(report,indent=2));mlflow.log_artifact(str(path))
+        run_id=run.info.run_id
+    return {'run_id':run_id,'metrics':MlflowClient(tracking_uri=uri).get_run(run_id).data.metrics}
+
 def restore_run(tracking,run_id):
     from mlflow.tracking import MlflowClient
     from .baseline import load
