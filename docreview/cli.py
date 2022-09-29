@@ -12,7 +12,11 @@ def main():
     train=sub.add_parser('train',help='Train and evaluate the fixed baseline');train.add_argument('--output',default='artifacts/baseline-run')
     registry=sub.add_parser('registry',help='Install, activate or roll back a verified baseline');registry.add_argument('operation',choices=['install','activate','rollback','status']);registry.add_argument('--directory',default='data/registry');registry.add_argument('--version');registry.add_argument('--artifact');registry.add_argument('--revision',type=int,default=0)
     worker=sub.add_parser('worker',help='Process leased OCR jobs');worker.add_argument('--data',default='data');worker.add_argument('--name',default='local-worker');worker.add_argument('--once',action='store_true')
+    benchmark=sub.add_parser('benchmark',help='Compare baseline and DistilBERT on grouped holdouts');benchmark.add_argument('--source',default='models/upstream/distilbert');benchmark.add_argument('--output',default='artifacts/comparison');benchmark.add_argument('--epochs',type=int,default=3)
     args=parser.parse_args()
+    if args.command=='benchmark':
+        from .comparison import compare
+        print(json.dumps(compare(args.source,args.output,args.epochs),indent=2))
     if args.command=='worker':
         import time
         from .pipeline import Pipeline
