@@ -56,7 +56,9 @@ def train_transformer(rows,source,output,config=None):
         history.append(sum(losses)/len(losses));print(json.dumps({'epoch':epoch+1,'loss':history[-1]}),flush=True)
     output=Path(output);output.mkdir(parents=True,exist_ok=True);model.save_pretrained(output);tokenizer.save_pretrained(output)
     metadata={'source_revision':manifest['revision'],'labels':labels,'config':asdict(config),'train_ids':[r['id'] for r in rows],'train_families':sorted({r['family'] for r in rows}),'loss':history}
-    (output/'training.json').write_text(json.dumps(metadata,indent=2));return metadata
+    (output/'training.json').write_text(json.dumps(metadata,indent=2))
+    from .artifacts import seal
+    seal(output);return metadata
 
 def verify_source(directory):
     directory=Path(directory);manifest=json.loads((directory/'source-manifest.json').read_text())

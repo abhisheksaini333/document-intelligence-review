@@ -7,6 +7,10 @@ from .fixtures import records
 from .baseline import train,predict,save
 from .transformer import train_transformer,TransformerClassifier,TrainingConfig
 
+def finalize_comparison(report):
+    report['promotion']=promotion_decision(report['models']['baseline']['calibrated'],report['models']['transformer']['calibrated'])
+    return report
+
 def promotion_decision(baseline,candidate,min_gain=.01,max_ece_regression=.02):
     gain=candidate['classification']['macro_f1']-baseline['classification']['macro_f1'];ece_delta=candidate['calibration']['ece']-baseline['calibration']['ece']
     reasons=[]
