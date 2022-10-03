@@ -3,7 +3,8 @@ from .fixtures import LABELS
 
 def route(payload,threshold=.85,min_ocr=.75):
     if not 0<=threshold<=1 or not 0<=min_ocr<=1: raise ValueError('Invalid routing threshold')
-    reasons=list(payload.get('issues',[]));prediction=payload.get('prediction')
+    from .extraction import field_issues
+    reasons=list(payload.get('issues',[]))+field_issues(payload.get('fields',{}));prediction=payload.get('prediction')
     if not prediction: reasons.append('unclassified')
     elif prediction['confidence']<threshold: reasons.append('uncertain_class')
     if any(v.get('confidence',0)<min_ocr for v in payload.get('fields',{}).values()): reasons.append('low_ocr_confidence')
