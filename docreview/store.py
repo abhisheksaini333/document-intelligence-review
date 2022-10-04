@@ -57,6 +57,7 @@ class Store:
     def review(self,identifier,version,fields,label,reviewer,action):
         from .review import validate_corrections
         corrections=validate_corrections(fields,label)
+        if type(version) is not int or version<1:raise ValueError('Version must be a positive integer')
         if not isinstance(reviewer,str) or not 1<=len(reviewer.strip())<=80 or action not in ('save','approve','reject'): raise ValueError('Reviewer and action required')
         with self.connect() as c:
             c.execute('BEGIN IMMEDIATE')

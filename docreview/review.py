@@ -16,6 +16,7 @@ def validate_corrections(fields,label):
     for name,value in fields.items():
         if name not in ('number','date','subtotal','tax','total','currency') or not isinstance(value,str) or not 1<=len(value)<=200: raise ValueError('Invalid correction field')
         value=normalize_text(value)
+        if not value:raise ValueError('Correction cannot be blank')
         if name in ('subtotal','tax','total'): value=amount(value)
         if name=='date': value=document_date(value)
         if name=='currency' and value not in ('USD','EUR','GBP'): raise ValueError('Unsupported currency')
