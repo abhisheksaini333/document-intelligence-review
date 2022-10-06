@@ -13,19 +13,27 @@ def static_asset(directory,url):
     if not target.is_file():raise KeyError('Asset not found')
     return target.read_bytes(),mimetypes.guess_type(str(target))[0] or 'application/octet-stream'
 
-def create_server(directory,host='127.0.0.1',port=4800,token=None):
+def create_server(directory,host='127.0.0.1',port=4800,token=None,request_timeout=10):
     pipeline=Pipeline(directory)
     class Handler(BaseHTTPRequestHandler):
         def log_message(self,*args): pass
         def respond(self,status,data):
             body=json.dumps(data,allow_nan=False).encode();self.send_response(status);self.send_header('Content-Type','application/json; charset=utf-8');self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body)
         def body(self):
-            self.connection.settimeout(10)
+            self.connection.settimeout(request_timeout)
             if self.headers.get('Transfer-Encoding'): raise ValueError('Chunked requests are unsupported')
             if self.headers.get('Content-Type','').split(';')[0]!='application/json': raise ValueError('Use application/json')
             length=int(self.headers.get('Content-Length','0'))
             if not 1<=length<=12*1024*1024: raise ValueError('Invalid request size')
-            raw=self.rfile.read(length)
+            import time
+            deadline=time.monotonic()+request_timeout;chunks=[];remaining=length
+            while remaining:
+                budget=deadline-time.monotonic()
+                if budget<=0:raise TimeoutError('Request deadline exceeded')
+                self.connection.settimeout(budget);part=self.rfile.read1(min(remaining,65536))
+                if not part:break
+                chunks.append(part);remaining-=len(part)
+            raw=b''.join(chunks)
             if len(raw)!=length: raise ValueError('Incomplete request body')
             body=json.loads(raw)
             if not isinstance(body,dict): raise ValueError('JSON object required')
