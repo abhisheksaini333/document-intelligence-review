@@ -5,6 +5,16 @@ from pathlib import Path
 from .pipeline import Pipeline
 from .store import Conflict
 
+def strict_json(data):
+    def pairs(items):
+        result={}
+        for key,value in items:
+            if key in result:raise ValueError('Duplicate JSON key')
+            result[key]=value
+        return result
+    def constant(value):raise ValueError('Nonfinite JSON numbers are forbidden')
+    return json.loads(data,object_pairs_hook=pairs,parse_constant=constant)
+
 def static_asset(directory,url):
     import mimetypes
     from urllib.parse import unquote
@@ -35,7 +45,7 @@ def create_server(directory,host='127.0.0.1',port=4800,token=None,request_timeou
                 chunks.append(part);remaining-=len(part)
             raw=b''.join(chunks)
             if len(raw)!=length: raise ValueError('Incomplete request body')
-            body=json.loads(raw)
+            body=strict_json(raw)
             if not isinstance(body,dict): raise ValueError('JSON object required')
             return body
         def do_POST(self):
