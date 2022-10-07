@@ -88,7 +88,7 @@ class Store:
     def result(self,identifier,version,payload):
         encoded=json.dumps(payload,allow_nan=False)
         with self.connect() as c:
-            cursor=c.execute("UPDATE documents SET payload=?,status='review',version=version+1 WHERE id=? AND version=?",(encoded,identifier,version))
+            cursor=c.execute("UPDATE documents SET payload=?,status='review',version=version+1 WHERE id=? AND version=? AND status IN ('queued','processing','failed')",(encoded,identifier,version))
             if cursor.rowcount!=1: raise Conflict('Document changed; reload before saving')
         return self.get(identifier)
     def list(self,status=None,limit=50,offset=0):
