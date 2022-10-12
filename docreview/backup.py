@@ -1,6 +1,21 @@
 import sqlite3,json,shutil,hashlib,os
 from pathlib import Path
 
+def restore(source,target):
+    source=Path(source).resolve();target=Path(target).resolve()
+    if target.exists():raise ValueError('Restore target must not exist')
+    manifest=json.loads((source/'manifest.json').read_text())
+    if manifest.get('format')!=1:raise ValueError('Unsupported backup format')
+    for name,digest in manifest['files'].items():
+        path=(source/name).resolve()
+        if not path.is_relative_to(source) or hashlib.sha256(path.read_bytes()).hexdigest()!=digest:raise ValueError('Backup integrity failure')
+    shutil.copytree(source,target)
+    with sqlite3.connect(target/'review.sqlite') as c:
+        if c.execute('PRAGMA integrity_check').fetchone()[0]!='ok':raise ValueError('Backup database is corrupt')
+        for identifier,path in c.execute('SELECT id,image_path FROM documents').fetchall():
+            c.execute('UPDATE documents SET image_path=? WHERE id=?',(str(target/'images'/Path(path).name),identifier))
+    return target
+
 def snapshot(source,target):
     source=Path(source).resolve();target=Path(target).resolve()
     if target.exists() or target.is_relative_to(source):raise ValueError('Backup target must be new and outside the data directory')
