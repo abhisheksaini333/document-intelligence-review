@@ -77,6 +77,7 @@ def create_server(directory,host='127.0.0.1',port=4800,token=None,request_timeou
                     return self.respond(200,export_corrections(pipeline.store))
                 if path.startswith('/api/documents/') and path.endswith('/events'): return self.respond(200,pipeline.store.events(path.split('/')[3]))
                 if path=='/api/health': return self.respond(200,{'status':'ok'})
+                if path=='/api/search':return self.respond(200,pipeline.store.search(params.get('q',[''])[0]))
                 if path=='/api/summary': return self.respond(200,pipeline.store.summary())
                 if path=='/api/documents': return self.respond(200,pipeline.store.list(status=params.get('status',[None])[0],limit=int(params.get('limit',['50'])[0]),offset=int(params.get('offset',['0'])[0])))
                 if path.startswith('/api/documents/') and path.endswith('/image'):

@@ -80,6 +80,10 @@ class Store:
         with self.connect() as c:
             exists=c.execute("SELECT 1 FROM sqlite_master WHERE name='events'").fetchone()
             return [dict(r) for r in c.execute('SELECT * FROM events WHERE document_id=? ORDER BY id',(identifier,))] if exists else []
+    def search(self,query,limit=50):
+        if not isinstance(query,str) or len(query)>200 or type(limit) is not int or not 1<=limit<=200:raise ValueError('Invalid search')
+        with self.connect() as c:
+            return [self.decode(r) for r in c.execute('SELECT * FROM documents WHERE instr(lower(filename),lower(?))>0 ORDER BY created,id LIMIT ?',(query,limit))]
     def summary(self):
         result=dict.fromkeys(('queued','processing','review','approved','rejected','failed'),0)
         with self.connect() as c:
