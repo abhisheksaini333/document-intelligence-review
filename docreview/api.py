@@ -66,6 +66,7 @@ def create_server(directory,host='127.0.0.1',port=4800,token=None,request_timeou
             except Conflict as exc:self.respond(409,{'error':str(exc)})
             except (ValueError,KeyError,TypeError) as exc:self.respond(400,{'error':str(exc)})
             except TimeoutError:self.respond(408,{'error':'Request deadline exceeded'})
+            except (OSError,RuntimeError):self.respond(503,{'error':'Document processing is unavailable; retry after checking the service'})
         def do_GET(self):
             try:
                 path=urlsplit(self.path).path;params=parse_qs(urlsplit(self.path).query)
