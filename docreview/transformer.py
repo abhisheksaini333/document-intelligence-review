@@ -19,6 +19,8 @@ class TrainingConfig:
 
 class TransformerClassifier:
     def __init__(self,directory,threads=2):
+        from .artifacts import verify
+        verify(directory)
         import torch
         from transformers import DistilBertTokenizerFast,DistilBertForSequenceClassification
         torch.set_num_threads(threads);self.torch=torch;self.tokenizer=DistilBertTokenizerFast.from_pretrained(directory,local_files_only=True);self.model=DistilBertForSequenceClassification.from_pretrained(directory,local_files_only=True);self.model.eval()

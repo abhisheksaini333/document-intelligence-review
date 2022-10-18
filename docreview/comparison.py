@@ -37,4 +37,5 @@ def compare(source,output,epochs=3):
         started=time.monotonic();raw=fn([r['text'] for r in parts['test']]);elapsed=time.monotonic()-started
         report['models'][name]={'raw':evaluate_predictions(parts['test'],raw),'calibrated':evaluate_predictions(parts['test'],calibrated(raw)),'temperature':temperature,'selected_threshold':threshold,'test_seconds':elapsed}
     before=transformer.predict([r['text'] for r in parts['test']]);reloaded=TransformerClassifier(output/'transformer');report['transformer_reload_equal']=before==reloaded.predict([r['text'] for r in parts['test']])
+    finalize_comparison(report)
     (output/'comparison.json').write_text(json.dumps(report,indent=2));return report
