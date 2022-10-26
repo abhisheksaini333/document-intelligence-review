@@ -73,6 +73,9 @@ def create_server(directory,host='127.0.0.1',port=4800,token=None,request_timeou
                 if not path.startswith('/api/'):
                     data,content_type=static_asset(Path(__file__).resolve().parent.parent/'frontend'/'dist',path)
                     self.send_response(200);self.send_header('Content-Type',content_type);self.send_header('Content-Length',str(len(data)));self.end_headers();self.wfile.write(data);return
+                if path=='/api/evaluation':
+                    report=pipeline.directory/'evaluation.json'
+                    return self.respond(200,json.loads(report.read_text()) if report.exists() else {'available':False})
                 if path=='/api/feedback':
                     from .feedback import export_corrections
                     return self.respond(200,export_corrections(pipeline.store))

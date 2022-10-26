@@ -1,0 +1,990 @@
+{
+  "scope": "180 synthetic English documents, 15 layout families; results do not estimate real-world document accuracy",
+  "dataset_sha256": "a6a2560612bc486c949becd9051a2699273fc0f4c38ffd00f9962f17f5c0a64d",
+  "split_ids": {
+    "train": [
+      "invoice-0-0",
+      "invoice-0-1",
+      "invoice-0-2",
+      "invoice-0-3",
+      "invoice-0-4",
+      "invoice-0-5",
+      "invoice-0-6",
+      "invoice-0-7",
+      "invoice-0-8",
+      "invoice-0-9",
+      "invoice-0-10",
+      "invoice-0-11",
+      "invoice-1-0",
+      "invoice-1-1",
+      "invoice-1-2",
+      "invoice-1-3",
+      "invoice-1-4",
+      "invoice-1-5",
+      "invoice-1-6",
+      "invoice-1-7",
+      "invoice-1-8",
+      "invoice-1-9",
+      "invoice-1-10",
+      "invoice-1-11",
+      "invoice-2-0",
+      "invoice-2-1",
+      "invoice-2-2",
+      "invoice-2-3",
+      "invoice-2-4",
+      "invoice-2-5",
+      "invoice-2-6",
+      "invoice-2-7",
+      "invoice-2-8",
+      "invoice-2-9",
+      "invoice-2-10",
+      "invoice-2-11",
+      "purchase_order-0-0",
+      "purchase_order-0-1",
+      "purchase_order-0-2",
+      "purchase_order-0-3",
+      "purchase_order-0-4",
+      "purchase_order-0-5",
+      "purchase_order-0-6",
+      "purchase_order-0-7",
+      "purchase_order-0-8",
+      "purchase_order-0-9",
+      "purchase_order-0-10",
+      "purchase_order-0-11",
+      "purchase_order-1-0",
+      "purchase_order-1-1",
+      "purchase_order-1-2",
+      "purchase_order-1-3",
+      "purchase_order-1-4",
+      "purchase_order-1-5",
+      "purchase_order-1-6",
+      "purchase_order-1-7",
+      "purchase_order-1-8",
+      "purchase_order-1-9",
+      "purchase_order-1-10",
+      "purchase_order-1-11",
+      "purchase_order-2-0",
+      "purchase_order-2-1",
+      "purchase_order-2-2",
+      "purchase_order-2-3",
+      "purchase_order-2-4",
+      "purchase_order-2-5",
+      "purchase_order-2-6",
+      "purchase_order-2-7",
+      "purchase_order-2-8",
+      "purchase_order-2-9",
+      "purchase_order-2-10",
+      "purchase_order-2-11",
+      "receipt-0-0",
+      "receipt-0-1",
+      "receipt-0-2",
+      "receipt-0-3",
+      "receipt-0-4",
+      "receipt-0-5",
+      "receipt-0-6",
+      "receipt-0-7",
+      "receipt-0-8",
+      "receipt-0-9",
+      "receipt-0-10",
+      "receipt-0-11",
+      "receipt-1-0",
+      "receipt-1-1",
+      "receipt-1-2",
+      "receipt-1-3",
+      "receipt-1-4",
+      "receipt-1-5",
+      "receipt-1-6",
+      "receipt-1-7",
+      "receipt-1-8",
+      "receipt-1-9",
+      "receipt-1-10",
+      "receipt-1-11",
+      "receipt-2-0",
+      "receipt-2-1",
+      "receipt-2-2",
+      "receipt-2-3",
+      "receipt-2-4",
+      "receipt-2-5",
+      "receipt-2-6",
+      "receipt-2-7",
+      "receipt-2-8",
+      "receipt-2-9",
+      "receipt-2-10",
+      "receipt-2-11"
+    ],
+    "calibration": [
+      "invoice-3-0",
+      "invoice-3-1",
+      "invoice-3-2",
+      "invoice-3-3",
+      "invoice-3-4",
+      "invoice-3-5",
+      "invoice-3-6",
+      "invoice-3-7",
+      "invoice-3-8",
+      "invoice-3-9",
+      "invoice-3-10",
+      "invoice-3-11",
+      "purchase_order-3-0",
+      "purchase_order-3-1",
+      "purchase_order-3-2",
+      "purchase_order-3-3",
+      "purchase_order-3-4",
+      "purchase_order-3-5",
+      "purchase_order-3-6",
+      "purchase_order-3-7",
+      "purchase_order-3-8",
+      "purchase_order-3-9",
+      "purchase_order-3-10",
+      "purchase_order-3-11",
+      "receipt-3-0",
+      "receipt-3-1",
+      "receipt-3-2",
+      "receipt-3-3",
+      "receipt-3-4",
+      "receipt-3-5",
+      "receipt-3-6",
+      "receipt-3-7",
+      "receipt-3-8",
+      "receipt-3-9",
+      "receipt-3-10",
+      "receipt-3-11"
+    ],
+    "test": [
+      "invoice-4-0",
+      "invoice-4-1",
+      "invoice-4-2",
+      "invoice-4-3",
+      "invoice-4-4",
+      "invoice-4-5",
+      "invoice-4-6",
+      "invoice-4-7",
+      "invoice-4-8",
+      "invoice-4-9",
+      "invoice-4-10",
+      "invoice-4-11",
+      "purchase_order-4-0",
+      "purchase_order-4-1",
+      "purchase_order-4-2",
+      "purchase_order-4-3",
+      "purchase_order-4-4",
+      "purchase_order-4-5",
+      "purchase_order-4-6",
+      "purchase_order-4-7",
+      "purchase_order-4-8",
+      "purchase_order-4-9",
+      "purchase_order-4-10",
+      "purchase_order-4-11",
+      "receipt-4-0",
+      "receipt-4-1",
+      "receipt-4-2",
+      "receipt-4-3",
+      "receipt-4-4",
+      "receipt-4-5",
+      "receipt-4-6",
+      "receipt-4-7",
+      "receipt-4-8",
+      "receipt-4-9",
+      "receipt-4-10",
+      "receipt-4-11"
+    ]
+  },
+  "split_families": {
+    "train": [
+      "invoice-layout-0",
+      "invoice-layout-1",
+      "invoice-layout-2",
+      "purchase_order-layout-0",
+      "purchase_order-layout-1",
+      "purchase_order-layout-2",
+      "receipt-layout-0",
+      "receipt-layout-1",
+      "receipt-layout-2"
+    ],
+    "calibration": [
+      "invoice-layout-3",
+      "purchase_order-layout-3",
+      "receipt-layout-3"
+    ],
+    "test": [
+      "invoice-layout-4",
+      "purchase_order-layout-4",
+      "receipt-layout-4"
+    ]
+  },
+  "training": {
+    "source_revision": "043235d6088ecd3dd5fb5ca3592b6913fd516027",
+    "labels": [
+      "invoice",
+      "purchase_order",
+      "receipt"
+    ],
+    "config": {
+      "epochs": 3,
+      "batch_size": 4,
+      "max_length": 128,
+      "learning_rate": 3e-05,
+      "seed": 17,
+      "threads": 2
+    },
+    "train_ids": [
+      "invoice-0-0",
+      "invoice-0-1",
+      "invoice-0-2",
+      "invoice-0-3",
+      "invoice-0-4",
+      "invoice-0-5",
+      "invoice-0-6",
+      "invoice-0-7",
+      "invoice-0-8",
+      "invoice-0-9",
+      "invoice-0-10",
+      "invoice-0-11",
+      "invoice-1-0",
+      "invoice-1-1",
+      "invoice-1-2",
+      "invoice-1-3",
+      "invoice-1-4",
+      "invoice-1-5",
+      "invoice-1-6",
+      "invoice-1-7",
+      "invoice-1-8",
+      "invoice-1-9",
+      "invoice-1-10",
+      "invoice-1-11",
+      "invoice-2-0",
+      "invoice-2-1",
+      "invoice-2-2",
+      "invoice-2-3",
+      "invoice-2-4",
+      "invoice-2-5",
+      "invoice-2-6",
+      "invoice-2-7",
+      "invoice-2-8",
+      "invoice-2-9",
+      "invoice-2-10",
+      "invoice-2-11",
+      "purchase_order-0-0",
+      "purchase_order-0-1",
+      "purchase_order-0-2",
+      "purchase_order-0-3",
+      "purchase_order-0-4",
+      "purchase_order-0-5",
+      "purchase_order-0-6",
+      "purchase_order-0-7",
+      "purchase_order-0-8",
+      "purchase_order-0-9",
+      "purchase_order-0-10",
+      "purchase_order-0-11",
+      "purchase_order-1-0",
+      "purchase_order-1-1",
+      "purchase_order-1-2",
+      "purchase_order-1-3",
+      "purchase_order-1-4",
+      "purchase_order-1-5",
+      "purchase_order-1-6",
+      "purchase_order-1-7",
+      "purchase_order-1-8",
+      "purchase_order-1-9",
+      "purchase_order-1-10",
+      "purchase_order-1-11",
+      "purchase_order-2-0",
+      "purchase_order-2-1",
+      "purchase_order-2-2",
+      "purchase_order-2-3",
+      "purchase_order-2-4",
+      "purchase_order-2-5",
+      "purchase_order-2-6",
+      "purchase_order-2-7",
+      "purchase_order-2-8",
+      "purchase_order-2-9",
+      "purchase_order-2-10",
+      "purchase_order-2-11",
+      "receipt-0-0",
+      "receipt-0-1",
+      "receipt-0-2",
+      "receipt-0-3",
+      "receipt-0-4",
+      "receipt-0-5",
+      "receipt-0-6",
+      "receipt-0-7",
+      "receipt-0-8",
+      "receipt-0-9",
+      "receipt-0-10",
+      "receipt-0-11",
+      "receipt-1-0",
+      "receipt-1-1",
+      "receipt-1-2",
+      "receipt-1-3",
+      "receipt-1-4",
+      "receipt-1-5",
+      "receipt-1-6",
+      "receipt-1-7",
+      "receipt-1-8",
+      "receipt-1-9",
+      "receipt-1-10",
+      "receipt-1-11",
+      "receipt-2-0",
+      "receipt-2-1",
+      "receipt-2-2",
+      "receipt-2-3",
+      "receipt-2-4",
+      "receipt-2-5",
+      "receipt-2-6",
+      "receipt-2-7",
+      "receipt-2-8",
+      "receipt-2-9",
+      "receipt-2-10",
+      "receipt-2-11"
+    ],
+    "train_families": [
+      "invoice-layout-0",
+      "invoice-layout-1",
+      "invoice-layout-2",
+      "purchase_order-layout-0",
+      "purchase_order-layout-1",
+      "purchase_order-layout-2",
+      "receipt-layout-0",
+      "receipt-layout-1",
+      "receipt-layout-2"
+    ],
+    "loss": [
+      0.6526620321803622,
+      0.05743558518588543,
+      0.012339348818554922
+    ]
+  },
+  "models": {
+    "baseline": {
+      "raw": {
+        "classification": {
+          "count": 36,
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "labels": [
+            "invoice",
+            "purchase_order",
+            "receipt"
+          ],
+          "confusion": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              0,
+              12,
+              0
+            ],
+            [
+              0,
+              0,
+              12
+            ]
+          ]
+        },
+        "calibration": {
+          "ece": 0.03577571454151085,
+          "brier": 0.0020018867646926074,
+          "bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 36,
+              "confidence": 0.9642242854584891,
+              "accuracy": 1.0
+            }
+          ]
+        },
+        "coverage": [
+          {
+            "threshold": 0,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.5,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.7,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.8,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.9,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.95,
+            "coverage": 0.9722222222222222,
+            "accepted": 35,
+            "risk": 0.0
+          },
+          {
+            "threshold": 1,
+            "coverage": 0.0,
+            "accepted": 0,
+            "risk": null
+          }
+        ]
+      },
+      "calibrated": {
+        "classification": {
+          "count": 36,
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "labels": [
+            "invoice",
+            "purchase_order",
+            "receipt"
+          ],
+          "confusion": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              0,
+              12,
+              0
+            ],
+            [
+              0,
+              0,
+              12
+            ]
+          ]
+        },
+        "calibration": {
+          "ece": 0.0007227771486378876,
+          "brier": 9.132207006896917e-07,
+          "bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 36,
+              "confidence": 0.9992772228513621,
+              "accuracy": 1.0
+            }
+          ]
+        },
+        "coverage": [
+          {
+            "threshold": 0,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.5,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.7,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.8,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.9,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.95,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 1,
+            "coverage": 0.0,
+            "accepted": 0,
+            "risk": null
+          }
+        ]
+      },
+      "temperature": {
+        "temperature": 0.5,
+        "nll": 0.0007201474582200552
+      },
+      "selected_threshold": {
+        "threshold": 0.0,
+        "coverage": 1.0,
+        "accepted": 36,
+        "risk": 0.0
+      },
+      "test_seconds": 0.00239462498575449
+    },
+    "transformer": {
+      "raw": {
+        "classification": {
+          "count": 36,
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "labels": [
+            "invoice",
+            "purchase_order",
+            "receipt"
+          ],
+          "confusion": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              0,
+              12,
+              0
+            ],
+            [
+              0,
+              0,
+              12
+            ]
+          ]
+        },
+        "calibration": {
+          "ece": 0.006422733267148373,
+          "brier": 6.190721073534328e-05,
+          "bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 36,
+              "confidence": 0.9935772667328516,
+              "accuracy": 1.0
+            }
+          ]
+        },
+        "coverage": [
+          {
+            "threshold": 0,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.5,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.7,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.8,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.9,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.95,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 1,
+            "coverage": 0.0,
+            "accepted": 0,
+            "risk": null
+          }
+        ]
+      },
+      "calibrated": {
+        "classification": {
+          "count": 36,
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "labels": [
+            "invoice",
+            "purchase_order",
+            "receipt"
+          ],
+          "confusion": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              0,
+              12,
+              0
+            ],
+            [
+              0,
+              0,
+              12
+            ]
+          ]
+        },
+        "calibration": {
+          "ece": 2.0921878852386833e-05,
+          "brier": 6.578399552662427e-10,
+          "bins": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 0,
+              "confidence": 0,
+              "accuracy": 0
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 36,
+              "confidence": 0.9999790781211476,
+              "accuracy": 1.0
+            }
+          ]
+        },
+        "coverage": [
+          {
+            "threshold": 0,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.5,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.7,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.8,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.9,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 0.95,
+            "coverage": 1.0,
+            "accepted": 36,
+            "risk": 0.0
+          },
+          {
+            "threshold": 1,
+            "coverage": 0.0,
+            "accepted": 0,
+            "risk": null
+          }
+        ]
+      },
+      "temperature": {
+        "temperature": 0.5,
+        "nll": 2.2025665265263877e-05
+      },
+      "selected_threshold": {
+        "threshold": 0.0,
+        "coverage": 1.0,
+        "accepted": 36,
+        "risk": 0.0
+      },
+      "test_seconds": 0.7850900001358241
+    }
+  },
+  "transformer_reload_equal": true,
+  "promotion": {
+    "promote": false,
+    "f1_gain": 0.0,
+    "ece_delta": -0.0007018552697855007,
+    "reasons": [
+      "insufficient_f1_gain"
+    ]
+  }
+}
