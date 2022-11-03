@@ -13,7 +13,21 @@ def main():
     registry=sub.add_parser('registry',help='Install, activate or roll back a verified baseline');registry.add_argument('operation',choices=['install','activate','rollback','status']);registry.add_argument('--directory',default='data/registry');registry.add_argument('--version');registry.add_argument('--artifact');registry.add_argument('--revision',type=int,default=0)
     worker=sub.add_parser('worker',help='Process leased OCR jobs');worker.add_argument('--data',default='data');worker.add_argument('--name',default='local-worker');worker.add_argument('--once',action='store_true')
     benchmark=sub.add_parser('benchmark',help='Compare baseline and DistilBERT on grouped holdouts');benchmark.add_argument('--source',default='models/upstream/distilbert');benchmark.add_argument('--output',default='artifacts/comparison');benchmark.add_argument('--epochs',type=int,default=3)
+    feedback=sub.add_parser('feedback',help='Export approved labels or select uncertain examples');feedback.add_argument('--data',default='data');feedback.add_argument('--select',action='store_true');feedback.add_argument('--limit',type=int,default=20)
+    backup=sub.add_parser('backup',help='Create or restore a verified review snapshot');backup.add_argument('operation',choices=['snapshot','restore']);backup.add_argument('source');backup.add_argument('target')
     args=parser.parse_args()
+    if args.command=='feedback':
+        from .pipeline import Pipeline
+        from .feedback import export_corrections,select_examples
+        store=Pipeline(args.data).store
+        if args.select:
+            rows=[{'id':r['id'],'digest':r['digest'],'probabilities':r['payload']['prediction']['probabilities']} for r in store.list(status='review',limit=200) if r['payload'].get('prediction')]
+            result=select_examples(rows,args.limit)
+        else:result=export_corrections(store)
+        print(json.dumps(result,indent=2))
+    if args.command=='backup':
+        from .backup import snapshot,restore
+        print((snapshot if args.operation=='snapshot' else restore)(args.source,args.target))
     if args.command=='benchmark':
         from .comparison import compare
         print(json.dumps(compare(args.source,args.output,args.epochs),indent=2))
