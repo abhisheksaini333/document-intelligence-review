@@ -1,0 +1,42 @@
+{
+  "repository": "distilbert/distilbert-base-uncased",
+  "revision": "043235d6088ecd3dd5fb5ca3592b6913fd516027",
+  "revision_date": "2022-05-31",
+  "files": {
+    "config.json": {
+      "sha256": "69c94b0222d5d1f4b0ad027ca7416cdafb98378cbbb8305d0bf47c9365c60c83",
+      "bytes": 483,
+      "url": "https://huggingface.co/distilbert/distilbert-base-uncased/resolve/043235d6088ecd3dd5fb5ca3592b6913fd516027/config.json"
+    },
+    "vocab.txt": {
+      "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "bytes": 231508,
+      "url": "https://huggingface.co/distilbert/distilbert-base-uncased/resolve/043235d6088ecd3dd5fb5ca3592b6913fd516027/vocab.txt"
+    },
+    "tokenizer_config.json": {
+      "sha256": "53b6f42b8b8daddbdc6d3532c324187a92b46c1602bd6e8d4ad5a413b4fc90e1",
+      "bytes": 28,
+      "url": "https://huggingface.co/distilbert/distilbert-base-uncased/resolve/043235d6088ecd3dd5fb5ca3592b6913fd516027/tokenizer_config.json"
+    },
+    "tokenizer.json": {
+      "sha256": "ce64fce797c24f68df90b40a3f74f579b336a493db14bd583fd520ea0d8c9a98",
+      "bytes": 466062,
+      "url": "https://huggingface.co/distilbert/distilbert-base-uncased/resolve/043235d6088ecd3dd5fb5ca3592b6913fd516027/tokenizer.json"
+    },
+    "pytorch_model.bin": {
+      "sha256": "e60d71610916da4787c5513c81bc026d415708528295502fb3e1a6fe1485ea7c",
+      "bytes": 267967963,
+      "url": "https://huggingface.co/distilbert/distilbert-base-uncased/resolve/043235d6088ecd3dd5fb5ca3592b6913fd516027/pytorch_model.bin"
+    },
+    "LICENSE": {
+      "sha256": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1",
+      "bytes": 11356,
+      "url": "https://huggingface.co/distilbert/distilbert-base-uncased/resolve/043235d6088ecd3dd5fb5ca3592b6913fd516027/LICENSE"
+    },
+    "README.md": {
+      "sha256": "21db84e0e3bcc80848ce97ae708e8bce047db97203514b79b88bde52b1dab8df",
+      "bytes": 8561,
+      "url": "https://huggingface.co/distilbert/distilbert-base-uncased/resolve/043235d6088ecd3dd5fb5ca3592b6913fd516027/README.md"
+    }
+  }
+}
