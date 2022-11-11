@@ -33,6 +33,11 @@ def validate_image(data):
                 pages = getattr(image, "n_frames", 1)
                 if width * height > 20_000_000 or pages > 20:
                     raise ValueError("Page or pixel limit exceeded")
+                for page in range(pages):
+                    image.seek(page)
+                    if image.width * image.height > 20_000_000:
+                        raise ValueError("Page pixel limit exceeded")
+                image.seek(0)
                 image.verify()
                 return {"width": width, "height": height, "pages": pages}
     except Exception as exc:
