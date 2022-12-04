@@ -9,7 +9,7 @@ class Conflict(ValueError):
 class Store:
     def __init__(self, path):
         self.path = str(path)
-        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        Path(path).parent.mkdir(parents=True, exist_ok=True, mode=0o700)
         with self.connect() as c:
             c.executescript(
                 """
@@ -20,6 +20,8 @@ class Store:
              payload TEXT NOT NULL DEFAULT '{}', created REAL NOT NULL);
             """
             )
+
+        Path(path).chmod(0o600)
 
     def connect(self):
         c = sqlite3.connect(self.path, timeout=10)
@@ -119,9 +121,16 @@ class Store:
                 c.execute("SELECT * FROM documents WHERE id=?", (row["id"],)).fetchone()
             )
 
-    def review(self, identifier, version, fields, label, reviewer, action):
+    def review(self, identifier, version, fields, label, reviewer, action, family=None):
         from .review import validate_corrections
 
+        import re
+
+        if family is not None and (
+            not isinstance(family, str)
+            or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,79}", family)
+        ):
+            raise ValueError("Family must be a stable vendor/template identifier")
         corrections = validate_corrections(fields, label)
         if type(version) is not int or version < 1:
             raise ValueError("Version must be a positive integer")
@@ -165,6 +174,8 @@ class Store:
                     + ", ".join(payload["issues"])
                 )
             payload["label"] = label
+            if family is not None:
+                payload["family"] = family
             status = {"save": "review", "approve": "approved", "reject": "rejected"}[
                 action
             ]
@@ -182,7 +193,13 @@ class Store:
                     version + 1,
                     reviewer,
                     action,
-                    json.dumps({"fields": corrections, "label": label}),
+                    json.dumps(
+                        {
+                            "fields": corrections,
+                            "label": label,
+                            "family": payload.get("family"),
+                        }
+                    ),
                     time.time(),
                 ),
             )

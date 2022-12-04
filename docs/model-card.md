@@ -24,3 +24,11 @@ See [the machine-readable report](evaluation.json) for dataset fingerprints, spl
 The benchmark classifies fixture source text. OCR field evaluation and OCR-to-classifier checks are separate measurements against rendered image pixels. Handwriting, multilingual documents, photographs, severe skew, arbitrary vendor templates and legal or financial verification are outside the demonstrated scope.
 
 Human corrections can become training examples after family assignment and a leakage audit. Reviewers must not move known calibration/test families into training during the same comparison.
+
+## Feedback families and deployed confidence
+
+A reviewer assigns a stable vendor/template family in the visible `Document family` field. Related pages and document variants must share that identifier. The reviewed export preserves it; unassigned families are rejected by `feedback-train`. For the built-in fixture set, `invoice-layout-0` through `invoice-layout-2` (and the equivalent other-class families) are training families, suffix `3` is calibration, and suffix `4` is test. Exported feedback overlapping calibration/test families, IDs or normalized texts is refused.
+
+Run `python -m docreview feedback-train reviewed-labels.json --output artifacts/feedback` after exporting approved records. This trains and evaluates a candidate artifact; it does not activate it. The browser integration test sets the family using the form, exports actual approved records and retrains directly from that export.
+
+The deployed pipeline currently uses raw classifier probabilities with a fixed 0.85 review threshold and 0.75 OCR field threshold. Temperature fitting, coverage curves and selected thresholds in the comparison report are offline evaluation. They do not automatically alter serving or routing policy.

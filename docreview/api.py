@@ -21,6 +21,12 @@ def strict_json(data):
     return json.loads(data, object_pairs_hook=pairs, parse_constant=constant)
 
 
+def web_root(package=None):
+    package = Path(package) if package else Path(__file__).resolve().parent
+    checkout = package.parent / "frontend" / "dist"
+    return checkout if (checkout / "index.html").exists() else package / "web"
+
+
 def static_asset(directory, url):
     import mimetypes
     from urllib.parse import unquote
@@ -119,6 +125,7 @@ def create_server(
                                 body["label"],
                                 body["reviewer"],
                                 body["action"],
+                                family=body.get("family"),
                             ),
                         )
                 self.respond(404, {"error": "Not found"})
@@ -142,7 +149,7 @@ def create_server(
                 params = parse_qs(urlsplit(self.path).query)
                 if not path.startswith("/api/"):
                     data, content_type = static_asset(
-                        Path(__file__).resolve().parent.parent / "frontend" / "dist",
+                        web_root(),
                         path,
                     )
                     self.send_response(200)

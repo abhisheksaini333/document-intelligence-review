@@ -84,6 +84,18 @@ try:
         subprocess.run(
             ["npm", "run", "test:e2e"], cwd=root / "frontend", env=env, check=True
         )
+        from docreview.feedback import retrain_feedback
+
+        with urllib.request.urlopen(
+            f"http://127.0.0.1:{api_port}/api/feedback"
+        ) as response:
+            feedback = json.load(response)
+        if not feedback:
+            raise AssertionError("Browser journey did not create approved feedback")
+        report = retrain_feedback(feedback, directory / "retrained")
+        if report["feedback_count"] != len(feedback):
+            raise AssertionError("Reviewed labels did not enter training")
+        print(json.dumps({"browser_feedback_retrained": report}, indent=2))
 finally:
     for process in reversed(processes):
         if process.poll() is None:

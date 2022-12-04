@@ -48,7 +48,23 @@ def main():
     backup.add_argument("operation", choices=["snapshot", "restore"])
     backup.add_argument("source")
     backup.add_argument("target")
+    feedback_train = sub.add_parser(
+        "feedback-train",
+        help="Retrain reviewed labels with explicitly assigned families",
+    )
+    feedback_train.add_argument("input")
+    feedback_train.add_argument("--output", default="artifacts/feedback")
     args = parser.parse_args()
+    if args.command == "feedback-train":
+        from pathlib import Path
+        from .feedback import retrain_feedback
+
+        print(
+            json.dumps(
+                retrain_feedback(json.loads(Path(args.input).read_text()), args.output),
+                indent=2,
+            )
+        )
     if args.command == "feedback":
         from .pipeline import Pipeline
         from .feedback import export_corrections, select_examples

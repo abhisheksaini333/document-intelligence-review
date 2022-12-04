@@ -5,6 +5,7 @@ test('review queue renders and preserves document edits',async({page})=>{
  await page.locator('.queue-item').first().click();
  await expect(page.locator('input[name="total"]')).toBeVisible();
  await page.locator('input[name="reviewer"]').fill('browser-reviewer');
+ await page.locator('input[name="family"]').fill('invoice-layout-0');
  await page.locator('input[name="total"]').fill('110.00');
  await page.locator('button:has-text("Save corrections")').click();
  await expect(page.locator('[role="status"]')).toContainText('Corrections saved');

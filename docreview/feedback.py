@@ -72,9 +72,44 @@ def export_corrections(store):
                     "fields": {
                         k: v["value"] for k, v in payload.get("fields", {}).items()
                     },
-                    "family": payload.get("family", row["digest"]),
+                    "family": payload.get("family"),
                     "source": "human-reviewed",
                 }
             )
         offset += len(rows)
     return result
+
+
+def retrain_feedback(feedback, directory):
+    """Train reviewed labels without changing the fixed calibration/test families."""
+    import json
+    from pathlib import Path
+    from .fixtures import records
+    from .dataset import split, audit_split, fingerprint
+    from .baseline import train, predict, save
+    from .metrics import classification
+
+    parts = split(records())
+    audit_split(parts)
+    training = merge_training_feedback(
+        parts["train"], feedback, parts["calibration"] + parts["test"]
+    )
+    model = train(training)
+    predictions = predict(model, [r["text"] for r in parts["test"]])
+    directory = Path(directory)
+    metadata = {
+        "training_sha256": fingerprint(training),
+        "feedback_ids": [r["id"] for r in feedback],
+    }
+    save(model, directory / "model", metadata)
+    report = {
+        **metadata,
+        "scope": "Fixed synthetic family holdout with additional reviewed labels",
+        "training_count": len(training),
+        "feedback_count": len(feedback),
+        "test": classification(
+            [r["label"] for r in parts["test"]], [p["label"] for p in predictions]
+        ),
+    }
+    (directory / "feedback-evaluation.json").write_text(json.dumps(report, indent=2))
+    return report
