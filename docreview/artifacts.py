@@ -25,6 +25,16 @@ def verify(directory):
     manifest = json.loads((directory / "artifact-manifest.json").read_text())
     if manifest.get("format") != 1 or not manifest["files"]:
         raise ValueError("Invalid artifact manifest")
+    paths = list(directory.rglob("*"))
+    if any(path.is_symlink() for path in paths):
+        raise ValueError("Model artifacts cannot contain symlinks")
+    actual = {
+        path.relative_to(directory).as_posix()
+        for path in paths
+        if path.is_file() and path.name != "artifact-manifest.json"
+    }
+    if actual != set(manifest["files"]):
+        raise ValueError("Model artifact inventory mismatch")
     for name, digest in manifest["files"].items():
         path = (directory / name).resolve()
         if (
