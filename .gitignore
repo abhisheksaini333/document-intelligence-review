@@ -15,3 +15,7 @@ mlruns/
 *.sqlite*
 playwright-report/
 test-results/
+
+docreview/web/
+dist/
+build/

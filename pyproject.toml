@@ -14,3 +14,6 @@ docreview = "docreview.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["docreview*"]
+
+[tool.setuptools.package-data]
+docreview = ["web/*", "web/assets/*"]

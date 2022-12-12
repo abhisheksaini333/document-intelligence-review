@@ -71,4 +71,6 @@ python scripts/browser_check.py
 
 Set `CHROMIUM_PATH` to an installed Chromium/Chrome executable, or install the browser supported by the pinned Playwright package. Browser checks create isolated data and processes, then exercise correction, approval, feedback export and source evidence.
 
+To distribute the workstation as a wheel, install `build==0.8.0` and run `python scripts/build_wheel.py`. This builds and embeds the browser assets. Install `requirements-ops.lock` and the resulting wheel on the destination, with Tesseract and its English data available; `docreview serve --data data` then serves the packaged UI without a source checkout or Node runtime.
+
 Original application code is MIT licensed. [Third-party notices](THIRD_PARTY_NOTICES.md) cover model and OCR assets.
