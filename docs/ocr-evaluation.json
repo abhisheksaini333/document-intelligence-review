@@ -1,0 +1,3190 @@
+{
+  "scope": "Project-owned synthetic raster fixtures; Tesseract OCR measured on rendered pixels",
+  "count": 36,
+  "fields": {
+    "accuracy": 1.0,
+    "fields": {
+      "number": {
+        "correct": 36,
+        "count": 36
+      },
+      "date": {
+        "correct": 36,
+        "count": 36
+      },
+      "subtotal": {
+        "correct": 36,
+        "count": 36
+      },
+      "tax": {
+        "correct": 36,
+        "count": 36
+      },
+      "total": {
+        "correct": 36,
+        "count": 36
+      },
+      "currency": {
+        "correct": 36,
+        "count": 36
+      }
+    },
+    "count": 216
+  },
+  "pages": [
+    {
+      "id": "invoice-4-0",
+      "family": "invoice-layout-4",
+      "sha256": "156bcba04af438144ae0fd31bebe9e1544015f1483ef8273c819c2b78061e20d",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5101",
+          "confidence": 0.921315345,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 209,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-01",
+          "confidence": 0.9654713849999998,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 214,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "128.00",
+          "confidence": 0.9642701466666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9649584966666664,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "12.80",
+          "confidence": 0.9672441633333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "140.80",
+          "confidence": 0.9649584966666664,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-1",
+      "family": "invoice-layout-4",
+      "sha256": "6d5511001a7f0514c742766fb06103652936a29ae5617b3e9f95fbf72eecd26a",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5102",
+          "confidence": 0.92572334,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 213,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-02",
+          "confidence": 0.9656228250000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "141.00",
+          "confidence": 0.9621623233333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9674420433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "14.10",
+          "confidence": 0.9638157133333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "155.10",
+          "confidence": 0.9674420433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-2",
+      "family": "invoice-layout-4",
+      "sha256": "946366b2b8fc27b814542fcce62663020969acfba6f24b27553f3eead952bfed",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5103",
+          "confidence": 0.92966076,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 213,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-03",
+          "confidence": 0.96691818,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "154.00",
+          "confidence": 0.9616725366666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9662893433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "15.40",
+          "confidence": 0.9657273866666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "169.40",
+          "confidence": 0.9662893433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-3",
+      "family": "invoice-layout-4",
+      "sha256": "ee3f7b8f9a79eae7a53b7629f8f3a5ff216dece8b1e14549367c55a6f9021009",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5104",
+          "confidence": 0.9264631299999999,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 213,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-04",
+          "confidence": 0.967187725,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "167.00",
+          "confidence": 0.9629370633333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9594896666666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "16.70",
+          "confidence": 0.9673051166666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "183.70",
+          "confidence": 0.9594896666666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-4",
+      "family": "invoice-layout-4",
+      "sha256": "b12deb8704f0bcc7ca4610c4030d79991fc22d0d84e30eb775e300783b3cec3e",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5105",
+          "confidence": 0.9275304,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 213,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-05",
+          "confidence": 0.966186755,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "180.00",
+          "confidence": 0.9637177266666668,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9676649966666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "18.00",
+          "confidence": 0.9590003699999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "198.00",
+          "confidence": 0.9676649966666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-5",
+      "family": "invoice-layout-4",
+      "sha256": "17ce9c66cc8c302de021ae2ed1e6596a111cfd335cc98f8b8d322414ad6cc489",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5106",
+          "confidence": 0.92923473,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 213,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-06",
+          "confidence": 0.964836505,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "193.00",
+          "confidence": 0.96237729,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9667678599999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "19.30",
+          "confidence": 0.9637379199999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "212.30",
+          "confidence": 0.9667678599999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-6",
+      "family": "invoice-layout-4",
+      "sha256": "e907df9ef5d7e5ff3787cf2d08b46fd6131dd0e9973b6bd6e9b9f5c15584b736",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5107",
+          "confidence": 0.926720885,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 213,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-07",
+          "confidence": 0.968677865,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "206.00",
+          "confidence": 0.9616829666666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9670416533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "20.60",
+          "confidence": 0.9673952733333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "226.60",
+          "confidence": 0.9670416533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-7",
+      "family": "invoice-layout-4",
+      "sha256": "dc7cc4afb9ceb9ddaf1989921b91ef99d5dc6478f12eae63b8f629ec6201c8d8",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5108",
+          "confidence": 0.9270662300000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 213,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-08",
+          "confidence": 0.966760635,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "219.00",
+          "confidence": 0.9632012933333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9637837200000001,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "21.90",
+          "confidence": 0.96503123,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "240.90",
+          "confidence": 0.9637837200000001,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-8",
+      "family": "invoice-layout-4",
+      "sha256": "601bdc6300a5b7eeeb8030eac0d3c6bf16ecff87899502fc7cc3c6e56eb04cf0",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5109",
+          "confidence": 0.926293565,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 213,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-09",
+          "confidence": 0.9671405,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "232.00",
+          "confidence": 0.9572993733333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9666529066666665,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "23.20",
+          "confidence": 0.9653221633333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "255.20",
+          "confidence": 0.9666529066666665,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-9",
+      "family": "invoice-layout-4",
+      "sha256": "f42de52184c0ef8e13f55ea2a7a5f9400ad496f0effd5f14abf8a7cec7c382a5",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5110",
+          "confidence": 0.9271101,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 213,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-10",
+          "confidence": 0.9684724800000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "245.00",
+          "confidence": 0.96362188,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9676418833333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "24.50",
+          "confidence": 0.9643948133333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "269.50",
+          "confidence": 0.9676418833333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-10",
+      "family": "invoice-layout-4",
+      "sha256": "897d68228e4f3ccc53dce5dda42cd3dad6623dced1669f38d5e5910cc9747a18",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5111",
+          "confidence": 0.906144905,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 209,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-11",
+          "confidence": 0.9666708800000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 214,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "258.00",
+          "confidence": 0.9643526233333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9646480533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "25.80",
+          "confidence": 0.9617878233333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "283.80",
+          "confidence": 0.9646480533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "invoice-4-11",
+      "family": "invoice-layout-4",
+      "sha256": "c4b4fa9c71bb759332a270f80e08310e778f3a51d37ea7454b85fe72e25d26d0",
+      "tokens": 29,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "IN-5112",
+          "confidence": 0.920301705,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 213,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-12",
+          "confidence": 0.96719101,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "271.00",
+          "confidence": 0.9646824399999998,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9605725333333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "27.10",
+          "confidence": 0.9628877533333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "298.10",
+          "confidence": 0.9605725333333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-0",
+      "family": "purchase_order-layout-4",
+      "sha256": "9c75911dae453568595110d7426efa937ce55f6c39984b83d4a0584d03d6d493",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5101",
+          "confidence": 0.9226789500000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 220,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-01",
+          "confidence": 0.9654713849999998,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 214,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "128.00",
+          "confidence": 0.9642701466666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9649584966666664,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "12.80",
+          "confidence": 0.9672441633333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "140.80",
+          "confidence": 0.9649584966666664,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-1",
+      "family": "purchase_order-layout-4",
+      "sha256": "ce137562952eee204535d8e823fed5a68e74ebd3a54634cd91f9583806051b81",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5102",
+          "confidence": 0.92813549,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-02",
+          "confidence": 0.9656228250000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "141.00",
+          "confidence": 0.9621623233333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9674420433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "14.10",
+          "confidence": 0.9638157133333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "155.10",
+          "confidence": 0.9674420433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-2",
+      "family": "purchase_order-layout-4",
+      "sha256": "a55f8d6f27a98bb1836859928466355172e5dd2e35cb993466bcd8b7b7868d4e",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5103",
+          "confidence": 0.9267852400000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-03",
+          "confidence": 0.96691818,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "154.00",
+          "confidence": 0.9616725366666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9662893433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "15.40",
+          "confidence": 0.9657273866666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "169.40",
+          "confidence": 0.9662893433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-3",
+      "family": "purchase_order-layout-4",
+      "sha256": "befa23d6c7448bced3111af063e231a13b4b47ad5ff407f8bfd6d0ffc039706a",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5104",
+          "confidence": 0.929674685,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-04",
+          "confidence": 0.967187725,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "167.00",
+          "confidence": 0.9629370633333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9594896666666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "16.70",
+          "confidence": 0.9673051166666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "183.70",
+          "confidence": 0.9594896666666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-4",
+      "family": "purchase_order-layout-4",
+      "sha256": "68f11ddc67ad3a9376c75dfe5d693a4bc7bbe89c8eb22a99a12fe15d35db9b5f",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5105",
+          "confidence": 0.925474545,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-05",
+          "confidence": 0.966186755,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "180.00",
+          "confidence": 0.9637177266666668,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9676649966666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "18.00",
+          "confidence": 0.9590003699999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "198.00",
+          "confidence": 0.9676649966666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-5",
+      "family": "purchase_order-layout-4",
+      "sha256": "6a88ca514b261ee7eb395681b4364488b3d279de9e99fa1c8f1945169dedf415",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5106",
+          "confidence": 0.9299906150000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-06",
+          "confidence": 0.964836505,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "193.00",
+          "confidence": 0.96237729,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9667678599999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "19.30",
+          "confidence": 0.9637379199999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "212.30",
+          "confidence": 0.9667678599999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-6",
+      "family": "purchase_order-layout-4",
+      "sha256": "f4d53f3727ace2918309c045f497dbba50fb004066b11abe4fd0af058efa745a",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5107",
+          "confidence": 0.928390845,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-07",
+          "confidence": 0.968677865,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "206.00",
+          "confidence": 0.9616829666666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9670416533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "20.60",
+          "confidence": 0.9673952733333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "226.60",
+          "confidence": 0.9670416533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-7",
+      "family": "purchase_order-layout-4",
+      "sha256": "3fad584707c65e1ac1f40d205e030e53e97f6f00ee9610e7e9fb903f09da29d0",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5108",
+          "confidence": 0.9237040300000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-08",
+          "confidence": 0.966760635,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "219.00",
+          "confidence": 0.9632012933333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9637837200000001,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "21.90",
+          "confidence": 0.96503123,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "240.90",
+          "confidence": 0.9637837200000001,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-8",
+      "family": "purchase_order-layout-4",
+      "sha256": "e85973d645a330acbe68cf7f061d9a63614f30706136dad8c48efc213ee3347b",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5109",
+          "confidence": 0.927193455,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-09",
+          "confidence": 0.9671405,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "232.00",
+          "confidence": 0.9572993733333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9666529066666665,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "23.20",
+          "confidence": 0.9653221633333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "255.20",
+          "confidence": 0.9666529066666665,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-9",
+      "family": "purchase_order-layout-4",
+      "sha256": "48441c588517476cc35fb45c99781323e0b0cb88559c586022db23105811930f",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5110",
+          "confidence": 0.92438564,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-10",
+          "confidence": 0.9684724800000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "245.00",
+          "confidence": 0.96362188,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9676418833333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "24.50",
+          "confidence": 0.9643948133333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "269.50",
+          "confidence": 0.9676418833333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-10",
+      "family": "purchase_order-layout-4",
+      "sha256": "7a1f32045db4ed9841b5dbb34c288f3596c78d83d71bf6d68b57ac9bbe31808b",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5111",
+          "confidence": 0.8998369600000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 220,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-11",
+          "confidence": 0.9666708800000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 214,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "258.00",
+          "confidence": 0.9643526233333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9646480533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "25.80",
+          "confidence": 0.9617878233333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "283.80",
+          "confidence": 0.9646480533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "purchase_order-4-11",
+      "family": "purchase_order-layout-4",
+      "sha256": "b5166188136337082f5c5bc557ad4eac93235ac899a2d6e949bc7f756c67762f",
+      "tokens": 28,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "PU-5112",
+          "confidence": 0.9241739699999999,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-12",
+          "confidence": 0.96719101,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "271.00",
+          "confidence": 0.9646824399999998,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9605725333333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "27.10",
+          "confidence": 0.9628877533333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "298.10",
+          "confidence": 0.9605725333333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-0",
+      "family": "receipt-layout-4",
+      "sha256": "17a5feb32d0018073d084529e5feb3ae1c494fcd030ed86d16175d61d0cf64e9",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5101",
+          "confidence": 0.927485385,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 220,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-01",
+          "confidence": 0.9654713849999998,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 214,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "128.00",
+          "confidence": 0.9642701466666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9649584966666664,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "12.80",
+          "confidence": 0.9672441633333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "140.80",
+          "confidence": 0.9649584966666664,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-1",
+      "family": "receipt-layout-4",
+      "sha256": "209e32ce09d90211a699570b6e606b153bd2f12fa8aa88f309dbdab9c1cf99a4",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5102",
+          "confidence": 0.9226113100000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-02",
+          "confidence": 0.9656228250000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "141.00",
+          "confidence": 0.9621623233333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9674420433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "14.10",
+          "confidence": 0.9638157133333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "155.10",
+          "confidence": 0.9674420433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-2",
+      "family": "receipt-layout-4",
+      "sha256": "daa9dc13a2e8fd1428b8b32df2ffcafcfae22bfcf7e8b9def7160d39eddf8abf",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5103",
+          "confidence": 0.9229863349999999,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-03",
+          "confidence": 0.96691818,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "154.00",
+          "confidence": 0.9616725366666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9662893433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "15.40",
+          "confidence": 0.9657273866666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "169.40",
+          "confidence": 0.9662893433333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-3",
+      "family": "receipt-layout-4",
+      "sha256": "b9f6b6eff132c4d3d1ed50f973fe91d5221c78d23c975730f09660c034ae47f9",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5104",
+          "confidence": 0.918843995,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-04",
+          "confidence": 0.967187725,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "167.00",
+          "confidence": 0.9629370633333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9594896666666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "16.70",
+          "confidence": 0.9673051166666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "183.70",
+          "confidence": 0.9594896666666667,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-4",
+      "family": "receipt-layout-4",
+      "sha256": "6fff58b3c454c0b9421c655eb968138b5115500ce7b842ca56736144f68b6613",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5105",
+          "confidence": 0.9208749399999999,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-05",
+          "confidence": 0.966186755,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "180.00",
+          "confidence": 0.9637177266666668,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9676649966666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "18.00",
+          "confidence": 0.9590003699999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "198.00",
+          "confidence": 0.9676649966666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-5",
+      "family": "receipt-layout-4",
+      "sha256": "9a63e39d2790740c22acafdbb43805279fd983c51fa59915dc3aa4ade3ea7694",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5106",
+          "confidence": 0.920075645,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-06",
+          "confidence": 0.964836505,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "193.00",
+          "confidence": 0.96237729,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9667678599999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "19.30",
+          "confidence": 0.9637379199999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "212.30",
+          "confidence": 0.9667678599999999,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-6",
+      "family": "receipt-layout-4",
+      "sha256": "308d62fe2a8ff6cc2724d1fd0c3525e22b24833c024fbd7e4b8479499b6b5c3e",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5107",
+          "confidence": 0.926719245,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-07",
+          "confidence": 0.968677865,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "206.00",
+          "confidence": 0.9616829666666666,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9670416533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "20.60",
+          "confidence": 0.9673952733333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "226.60",
+          "confidence": 0.9670416533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-7",
+      "family": "receipt-layout-4",
+      "sha256": "9318b40e270a392f92cdc9394628307803bc2c44bb1e23d3dd8abeaebb0e9650",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5108",
+          "confidence": 0.91953705,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-08",
+          "confidence": 0.966760635,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "219.00",
+          "confidence": 0.9632012933333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9637837200000001,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "21.90",
+          "confidence": 0.96503123,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "240.90",
+          "confidence": 0.9637837200000001,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-8",
+      "family": "receipt-layout-4",
+      "sha256": "f532bdddc162d764878813f7f66c102e9b4a420e6041d99552246c63f52580da",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5109",
+          "confidence": 0.926674425,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-09",
+          "confidence": 0.9671405,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "232.00",
+          "confidence": 0.9572993733333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9666529066666665,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "23.20",
+          "confidence": 0.9653221633333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "255.20",
+          "confidence": 0.9666529066666665,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-9",
+      "family": "receipt-layout-4",
+      "sha256": "8fcafbf7b9c4fa619e06ac4499f1703993894ab53c17297e36cba2578b4056f1",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5110",
+          "confidence": 0.92585205,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-10",
+          "confidence": 0.9684724800000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "245.00",
+          "confidence": 0.96362188,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9676418833333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "24.50",
+          "confidence": 0.9643948133333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "269.50",
+          "confidence": 0.9676418833333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-10",
+      "family": "receipt-layout-4",
+      "sha256": "0c84bfa8370eb401c6680dbc7a79758131109231a62e36779b85e47b87b8f036",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5111",
+          "confidence": 0.923629835,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 220,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-11",
+          "confidence": 0.9666708800000001,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 214,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "258.00",
+          "confidence": 0.9643526233333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9646480533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "25.80",
+          "confidence": 0.9617878233333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "283.80",
+          "confidence": 0.9646480533333333,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    },
+    {
+      "id": "receipt-4-11",
+      "family": "receipt-layout-4",
+      "sha256": "1fecb7781a2b383faf21f3f7e370cd2e76dbc2711ef203d455e066905d86afcc",
+      "tokens": 31,
+      "fields": {
+        "number": {
+          "name": "number",
+          "value": "RE-5112",
+          "confidence": 0.92928482,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 266,
+            "width": 224,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "date": {
+          "name": "date",
+          "value": "2022-05-12",
+          "confidence": 0.96719101,
+          "page": 1,
+          "box": {
+            "x": 72,
+            "y": 361,
+            "width": 218,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "value": "271.00",
+          "confidence": 0.9646824399999998,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 551,
+            "width": 273,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "currency": {
+          "name": "currency",
+          "value": "USD",
+          "confidence": 0.9605725333333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "currency-symbol"
+        },
+        "tax": {
+          "name": "tax",
+          "value": "27.10",
+          "confidence": 0.9628877533333332,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 646,
+            "width": 199,
+            "height": 20
+          },
+          "method": "spatial-line"
+        },
+        "total": {
+          "name": "total",
+          "value": "298.10",
+          "confidence": 0.9605725333333334,
+          "page": 1,
+          "box": {
+            "x": 71,
+            "y": 741,
+            "width": 231,
+            "height": 20
+          },
+          "method": "spatial-line"
+        }
+      }
+    }
+  ],
+  "classification_on_ocr": {
+    "baseline": {
+      "count": 36,
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "labels": [
+        "invoice",
+        "purchase_order",
+        "receipt"
+      ],
+      "confusion": [
+        [
+          12,
+          0,
+          0
+        ],
+        [
+          0,
+          12,
+          0
+        ],
+        [
+          0,
+          0,
+          12
+        ]
+      ]
+    },
+    "transformer": {
+      "count": 36,
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "labels": [
+        "invoice",
+        "purchase_order",
+        "receipt"
+      ],
+      "confusion": [
+        [
+          12,
+          0,
+          0
+        ],
+        [
+          0,
+          12,
+          0
+        ],
+        [
+          0,
+          0,
+          12
+        ]
+      ]
+    }
+  },
+  "dataset_sha256": "a6a2560612bc486c949becd9051a2699273fc0f4c38ffd00f9962f17f5c0a64d",
+  "tesseract_version": "tesseract 5.5.2"
+}

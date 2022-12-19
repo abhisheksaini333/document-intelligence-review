@@ -23,6 +23,8 @@ See [the machine-readable report](evaluation.json) for dataset fingerprints, spl
 
 The benchmark classifies fixture source text. OCR field evaluation and OCR-to-classifier checks are separate measurements against rendered image pixels. Handwriting, multilingual documents, photographs, severe skew, arbitrary vendor templates and legal or financial verification are outside the demonstrated scope.
 
+The separate [rendered holdout report](ocr-evaluation.json) contains 36 page hashes and the evidence for all 216 expected fields. Host Tesseract 5.5.2 recovered all 216 fields; both saved classifiers reached macro F1 1.0 when given the resulting OCR text. This uses the same controlled synthetic holdout and is subject to the same limitations. Reproduce it after training with `python scripts/evaluate_ocr.py`. The pinned Tesseract 5.2.0 container has separate runtime and HTTP checks; the host report is not a claim that both OCR versions produce identical tokens or confidence values.
+
 Human corrections can become training examples after family assignment and a leakage audit. Reviewers must not move known calibration/test families into training during the same comparison.
 
 ## Feedback families and deployed confidence
