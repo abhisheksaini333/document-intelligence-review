@@ -62,6 +62,8 @@ Workers claim durable SQLite leases. Expired leases can be recovered; stale work
 
 ## Verify
 
+See [verification and measured behavior](docs/verification.md) for the completed checks, exact scope and runtime versions.
+
 ```sh
 BENTOML_HOME=.bentoml python -m unittest discover -s tests -v
 node frontend/tests/client.test.mjs
