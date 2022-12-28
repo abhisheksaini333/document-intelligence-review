@@ -2,6 +2,8 @@
 
 Turn invoice, purchase-order and receipt images into reviewable structured records. Folio keeps the original page, OCR boxes, normalized fields and reviewer decisions together, so every correction can be traced to its evidence.
 
+See [architecture and design decisions](docs/architecture.md) for component boundaries and the reasoning behind the local store, review transactions and model workflow.
+
 ![Review desk](docs/review-desk.png)
 
 ## Start locally
