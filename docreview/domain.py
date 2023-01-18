@@ -35,10 +35,14 @@ class Field:
         if (
             self.name not in ("number", "date", "subtotal", "tax", "total", "currency")
             or not isinstance(self.value, str)
-            or not self.value
+            or not self.value.strip()
+            or type(self.confidence) not in (int, float)
             or not math.isfinite(self.confidence)
             or not 0 <= self.confidence <= 1
+            or type(self.page) is not int
             or self.page < 1
+            or (self.box is not None and not isinstance(self.box, Box))
+            or not isinstance(self.method, str) or not self.method.strip()
         ):
             raise ValueError("Invalid field evidence")
 
