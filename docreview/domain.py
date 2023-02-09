@@ -59,7 +59,10 @@ class Token:
 
     def __post_init__(self):
         if (
-            not self.text.strip()
+            not isinstance(self.text, str)
+            or not self.text.strip()
+            or not isinstance(self.box, Box)
+            or type(self.confidence) not in (int, float)
             or not math.isfinite(self.confidence)
             or not 0 <= self.confidence <= 100
             or type(self.page) is not int
