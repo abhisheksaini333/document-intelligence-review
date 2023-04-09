@@ -20,10 +20,15 @@ def amount(value):
     value = re.sub(r"^(?:USD|EUR|GBP|[$€£])\s*", "", value)
     if not re.fullmatch(r"-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{1,2})?", value):
         raise ValueError("Invalid decimal amount")
-    result = Decimal(value.replace(",", ""))
-    if negative:
-        result = -result
-    return format(result.quantize(Decimal(".01")), "f")
+    if negative and value.startswith("-"):
+        raise ValueError("Ambiguous negative amount")
+    try:
+        result = Decimal(value.replace(",", ""))
+        if negative:
+            result = -result
+        return format(result.quantize(Decimal(".01")), "f")
+    except InvalidOperation as exc:
+        raise ValueError("Amount exceeds supported precision") from exc
 
 
 def normalize_text(text):

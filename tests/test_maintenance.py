@@ -16,3 +16,10 @@ class Maintenance(unittest.TestCase):
         for key,value in [('text',None),('text',7),('box',None),('confidence',True),('confidence','95')]:
             with self.assertRaises(ValueError):Token(**{**base,key:value})
         self.assertEqual(Token(**base).text,'total')
+
+    def test_dir03(self):
+        from docreview.normalize import amount
+        with self.assertRaises(ValueError):amount('(-1.00)')
+        with self.assertRaises(ValueError):amount('9'*200)
+        self.assertEqual(amount('(USD 1,000.25)'),'-1000.25')
+        self.assertEqual(amount('-1.00'),'-1.00')
