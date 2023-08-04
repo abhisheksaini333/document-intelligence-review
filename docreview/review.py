@@ -1,3 +1,4 @@
+import math
 from .normalize import amount, document_date, normalize_text
 from .fixtures import LABELS
 
@@ -11,10 +12,13 @@ def route(payload, threshold=0.85, min_ocr=0.75):
     prediction = payload.get("prediction")
     if not prediction:
         reasons.append("unclassified")
+    elif (not isinstance(prediction, dict) or type(prediction.get("confidence")) not in (int, float)
+            or not math.isfinite(prediction["confidence"]) or not 0 <= prediction["confidence"] <= 1):
+        reasons.append("invalid_classification")
     elif prediction["confidence"] < threshold:
         reasons.append("uncertain_class")
     if any(
-        v.get("confidence", 0) < min_ocr for v in payload.get("fields", {}).values()
+        not isinstance(v, dict) or type(v.get("confidence")) not in (int,float) or not math.isfinite(v["confidence"]) or not 0<=v["confidence"]<=1 or v["confidence"] < min_ocr for v in payload.get("fields", {}).values()
     ):
         reasons.append("low_ocr_confidence")
     return {

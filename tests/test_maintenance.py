@@ -23,3 +23,12 @@ class Maintenance(unittest.TestCase):
         with self.assertRaises(ValueError):amount('9'*200)
         self.assertEqual(amount('(USD 1,000.25)'),'-1000.25')
         self.assertEqual(amount('-1.00'),'-1.00')
+
+    def test_dir04(self):
+        from docreview.review import route
+        fields={k:{'value':v,'confidence':.99} for k,v in [('number','I'),('date','2022-01-01'),('total','10')]}
+        for confidence in (float('nan'),float('inf'),True,2,None):
+            result=route({'fields':fields,'prediction':{'confidence':confidence}})
+            self.assertEqual(result['recommendation'],'review')
+            self.assertIn('invalid_classification',result['reasons'])
+        self.assertEqual(route({'fields':fields,'prediction':{'confidence':.99}})['recommendation'],'eligible')
