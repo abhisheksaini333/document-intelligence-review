@@ -5,14 +5,21 @@ from .normalize import amount, document_date
 
 
 def field_issues(fields):
-    issues = [
-        "missing_" + key for key in ("number", "date", "total") if key not in fields
-    ]
-    if all(key in fields for key in ("subtotal", "tax", "total")):
-        expected = Decimal(fields["subtotal"]["value"]) + Decimal(
-            fields["tax"]["value"]
-        )
-        if abs(expected - Decimal(fields["total"]["value"])) > Decimal(".01"):
+    if not isinstance(fields, dict):
+        return ["invalid_fields"]
+    issues = ["missing_" + key for key in ("number", "date", "total") if key not in fields]
+    amounts = {}
+    for key, evidence in fields.items():
+        if not isinstance(evidence, dict) or not isinstance(evidence.get("value"), str) or not evidence["value"].strip():
+            issues.append("invalid_" + str(key))
+            continue
+        if key in ("subtotal", "tax", "total"):
+            try:
+                amounts[key] = Decimal(amount(evidence["value"]))
+            except ValueError:
+                issues.append("invalid_" + key)
+    if all(key in amounts for key in ("subtotal", "tax", "total")):
+        if abs(amounts["subtotal"] + amounts["tax"] - amounts["total"]) > Decimal(".01"):
             issues.append("total_mismatch")
     return issues
 

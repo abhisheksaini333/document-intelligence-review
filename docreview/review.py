@@ -8,7 +8,10 @@ def route(payload, threshold=0.85, min_ocr=0.75):
         raise ValueError("Invalid routing threshold")
     from .extraction import field_issues
 
-    reasons = list(payload.get("issues", [])) + field_issues(payload.get("fields", {}))
+    fields = payload.get("fields", {})
+    reasons = list(payload.get("issues", [])) + field_issues(fields)
+    if not isinstance(fields, dict):
+        fields = {}
     prediction = payload.get("prediction")
     if not prediction:
         reasons.append("unclassified")
@@ -18,7 +21,7 @@ def route(payload, threshold=0.85, min_ocr=0.75):
     elif prediction["confidence"] < threshold:
         reasons.append("uncertain_class")
     if any(
-        not isinstance(v, dict) or type(v.get("confidence")) not in (int,float) or not math.isfinite(v["confidence"]) or not 0<=v["confidence"]<=1 or v["confidence"] < min_ocr for v in payload.get("fields", {}).values()
+        not isinstance(v, dict) or type(v.get("confidence")) not in (int,float) or not math.isfinite(v["confidence"]) or not 0<=v["confidence"]<=1 or v["confidence"] < min_ocr for v in fields.values()
     ):
         reasons.append("low_ocr_confidence")
     return {

@@ -32,3 +32,12 @@ class Maintenance(unittest.TestCase):
             self.assertEqual(result['recommendation'],'review')
             self.assertIn('invalid_classification',result['reasons'])
         self.assertEqual(route({'fields':fields,'prediction':{'confidence':.99}})['recommendation'],'eligible')
+
+    def test_dir05(self):
+        from docreview.extraction import field_issues
+        for value in (None,{}, {'value':'NaN'},{'value':'garbage'}):
+            self.assertIn('invalid_total',field_issues({'total':value}))
+        self.assertEqual(field_issues(None),['invalid_fields'])
+        fields={k:{'value':v} for k,v in [('number','I'),('date','2022-01-01'),('subtotal','10'),('tax','2'),('total','13')]}
+        self.assertIn('total_mismatch',field_issues(fields));fields['total']['value']='12'
+        self.assertEqual(field_issues(fields),[])
