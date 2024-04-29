@@ -19,6 +19,8 @@ def audit_split(parts):
         if not rows:
             raise ValueError("Empty dataset split")
         for row in rows:
+            if row["id"] in ids:
+                raise ValueError("Duplicate dataset identity: " + str(row["id"]))
             for mapping, key in (
                 (ids, row["id"]),
                 (families, row["family"]),

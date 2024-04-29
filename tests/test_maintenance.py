@@ -41,3 +41,9 @@ class Maintenance(unittest.TestCase):
         fields={k:{'value':v} for k,v in [('number','I'),('date','2022-01-01'),('subtotal','10'),('tax','2'),('total','13')]}
         self.assertIn('total_mismatch',field_issues(fields));fields['total']['value']='12'
         self.assertEqual(field_issues(fields),[])
+
+    def test_dir06(self):
+        from docreview.dataset import audit_split
+        row={'id':'a','family':'one','text':'invoice'}
+        with self.assertRaisesRegex(ValueError,'Duplicate'):audit_split({'train':[row,dict(row)]})
+        self.assertTrue(audit_split({'train':[row,{**row,'id':'b'}]}))
