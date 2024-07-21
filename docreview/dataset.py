@@ -36,7 +36,11 @@ def audit_split(parts):
 
 def split(rows):
     groups = {}
+    family_labels = {}
     for row in rows:
+        if row["family"] in family_labels and family_labels[row["family"]] != row["label"]:
+            raise ValueError("A layout family cannot span document classes")
+        family_labels[row["family"]] = row["label"]
         groups.setdefault(row["label"], set()).add(row["family"])
     mapping = {}
     for label, families in sorted(groups.items()):

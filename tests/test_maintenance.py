@@ -47,3 +47,8 @@ class Maintenance(unittest.TestCase):
         row={'id':'a','family':'one','text':'invoice'}
         with self.assertRaisesRegex(ValueError,'Duplicate'):audit_split({'train':[row,dict(row)]})
         self.assertTrue(audit_split({'train':[row,{**row,'id':'b'}]}))
+
+    def test_dir07(self):
+        from docreview.dataset import split
+        rows=[{'id':f'{label}-{i}','label':label,'family':f'family-{i}','text':label} for label in ('invoice','receipt') for i in range(5)]
+        with self.assertRaisesRegex(ValueError,'family'):split(rows)
