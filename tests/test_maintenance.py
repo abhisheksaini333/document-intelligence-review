@@ -52,3 +52,11 @@ class Maintenance(unittest.TestCase):
         from docreview.dataset import split
         rows=[{'id':f'{label}-{i}','label':label,'family':f'family-{i}','text':label} for label in ('invoice','receipt') for i in range(5)]
         with self.assertRaisesRegex(ValueError,'family'):split(rows)
+
+    def test_dir08(self):
+        from docreview.feedback import merge_training_feedback
+        held=[{'id':'held','family':'held-family','text':'held text'}]
+        base={'id':'training','family':'training-family','text':'fresh','label':'invoice'}
+        for row in ({**base,'id':'held'},{**base,'family':'held-family'},{**base,'text':' HELD  TEXT '}):
+            with self.assertRaisesRegex(ValueError,'Training overlaps'):merge_training_feedback([row],[],held)
+        self.assertEqual(merge_training_feedback([base],[],held),[base])

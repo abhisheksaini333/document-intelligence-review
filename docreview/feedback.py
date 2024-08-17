@@ -7,6 +7,10 @@ def merge_training_feedback(training, feedback, held_out):
     held_ids = {r["id"] for r in held_out}
     held_families = {r["family"] for r in held_out}
     held_text = {" ".join(r["text"].lower().split()) for r in held_out}
+    for row in training:
+        if (row["id"] in held_ids or row["family"] in held_families
+                or " ".join(row["text"].lower().split()) in held_text):
+            raise ValueError("Training overlaps a held-out family or document")
     result = {r["id"]: dict(r) for r in training}
     for row in feedback:
         if (
