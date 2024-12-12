@@ -60,3 +60,9 @@ class Maintenance(unittest.TestCase):
         for row in ({**base,'id':'held'},{**base,'family':'held-family'},{**base,'text':' HELD  TEXT '}):
             with self.assertRaisesRegex(ValueError,'Training overlaps'):merge_training_feedback([row],[],held)
         self.assertEqual(merge_training_feedback([base],[],held),[base])
+
+    def test_dir09(self):
+        from docreview.feedback import merge_training_feedback
+        row={'id':'new','family':'new-family','text':'fresh','label':'invoice'}
+        with self.assertRaisesRegex(ValueError,'Conflicting'):merge_training_feedback([],[row,{**row,'label':'receipt'}],[])
+        self.assertEqual(merge_training_feedback([],[row,dict(row)],[]),[row])

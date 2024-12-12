@@ -12,7 +12,11 @@ def merge_training_feedback(training, feedback, held_out):
                 or " ".join(row["text"].lower().split()) in held_text):
             raise ValueError("Training overlaps a held-out family or document")
     result = {r["id"]: dict(r) for r in training}
+    reviewed = {}
     for row in feedback:
+        if row.get("id") in reviewed and reviewed[row["id"]] != row:
+            raise ValueError("Conflicting reviewed rows share one identity")
+        reviewed[row.get("id")] = row
         if (
             not row.get("family")
             or row.get("label") not in LABELS
