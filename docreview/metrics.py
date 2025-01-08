@@ -4,6 +4,10 @@ import math
 def coverage_curve(actual, predictions, thresholds=(0, 0.5, 0.7, 0.8, 0.9, 0.95, 1)):
     if not actual or len(actual) != len(predictions):
         raise ValueError("Aligned predictions required")
+    if any(not isinstance(p, dict) or not isinstance(p.get("label"), str) or not p["label"]
+           or type(p.get("confidence")) not in (int,float) or not math.isfinite(p["confidence"])
+           or not 0 <= p["confidence"] <= 1 for p in predictions):
+        raise ValueError("Invalid prediction confidence")
     result = []
     for threshold in thresholds:
         if not 0 <= threshold <= 1:

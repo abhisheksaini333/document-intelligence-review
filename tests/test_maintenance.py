@@ -66,3 +66,9 @@ class Maintenance(unittest.TestCase):
         row={'id':'new','family':'new-family','text':'fresh','label':'invoice'}
         with self.assertRaisesRegex(ValueError,'Conflicting'):merge_training_feedback([],[row,{**row,'label':'receipt'}],[])
         self.assertEqual(merge_training_feedback([],[row,dict(row)],[]),[row])
+
+    def test_dir10(self):
+        from docreview.metrics import coverage_curve
+        for confidence in (float('nan'),float('inf'),True,-1,2,'1'):
+            with self.assertRaises(ValueError):coverage_curve(['invoice'],[{'label':'invoice','confidence':confidence}])
+        self.assertEqual(coverage_curve(['invoice'],[{'label':'invoice','confidence':1}],[1])[0]['coverage'],1)
