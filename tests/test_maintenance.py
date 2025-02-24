@@ -72,3 +72,12 @@ class Maintenance(unittest.TestCase):
         for confidence in (float('nan'),float('inf'),True,-1,2,'1'):
             with self.assertRaises(ValueError):coverage_curve(['invoice'],[{'label':'invoice','confidence':confidence}])
         self.assertEqual(coverage_curve(['invoice'],[{'label':'invoice','confidence':1}],[1])[0]['coverage'],1)
+
+    def test_dir11(self):
+        from docreview.metrics import calibration
+        from docreview.calibration import choose_temperature,temperature_scale
+        for bins in (True,1.5,None):
+            with self.assertRaises(ValueError):calibration(['a'],[{'a':1}],bins=bins)
+        for temperature in (True,None,'1'):
+            with self.assertRaises(ValueError):temperature_scale({'a':1},temperature)
+        with self.assertRaisesRegex(ValueError,'candidates'):choose_temperature(['a'],[{'a':1}],candidates=[])

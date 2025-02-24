@@ -26,7 +26,7 @@ def choose_threshold(actual, predictions, max_risk=0.05):
 
 
 def temperature_scale(probabilities, temperature):
-    if not math.isfinite(temperature) or temperature <= 0:
+    if type(temperature) not in (int,float) or not math.isfinite(temperature) or temperature <= 0:
         raise ValueError("Invalid temperature")
     if (
         not probabilities
@@ -48,6 +48,8 @@ def choose_temperature(
 ):
     if not actual or len(actual) != len(probabilities):
         raise ValueError("Aligned calibration labels required")
+    if not isinstance(candidates, (list, tuple)) or not candidates:
+        raise ValueError("Nonempty temperature candidates required")
     scores = []
     for temperature in candidates:
         nll = -sum(

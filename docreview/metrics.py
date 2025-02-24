@@ -29,7 +29,7 @@ def coverage_curve(actual, predictions, thresholds=(0, 0.5, 0.7, 0.8, 0.9, 0.95,
 
 
 def calibration(actual, probabilities, bins=10):
-    if not actual or len(actual) != len(probabilities) or not 1 <= bins <= 100:
+    if not actual or len(actual) != len(probabilities) or type(bins) is not int or not 1 <= bins <= 100:
         raise ValueError("Aligned probabilities required")
     buckets = [[] for _ in range(bins)]
     brier = 0
