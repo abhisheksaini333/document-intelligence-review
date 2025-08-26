@@ -81,3 +81,13 @@ class Maintenance(unittest.TestCase):
         for temperature in (True,None,'1'):
             with self.assertRaises(ValueError):temperature_scale({'a':1},temperature)
         with self.assertRaisesRegex(ValueError,'candidates'):choose_temperature(['a'],[{'a':1}],candidates=[])
+
+    def test_dir12(self):
+        from docreview.store import Store,Conflict
+        with tempfile.TemporaryDirectory() as d:
+            store=Store(pathlib.Path(d)/'db');row=store.create('a'*64,'x','x');claimed=store.claim('worker',now=100)
+            reviewed=store.result(row['id'],claimed['version'],{'fields':{}})
+            with self.assertRaises(Conflict):store.fail(row['id'],reviewed['version'],'late failure')
+            self.assertEqual(store.get(row['id'])['status'],'review')
+            fresh=store.create('b'*64,'y','y')
+            with self.assertRaises(Conflict):store.fail(fresh['id'],fresh['version'],'no lease')

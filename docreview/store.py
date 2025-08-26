@@ -63,16 +63,20 @@ class Store:
         return self.get(identifier)
 
     def fail(self, identifier, version, error, max_attempts=3):
-        if not 1 <= max_attempts <= 10:
+        if type(max_attempts) is not int or not 1 <= max_attempts <= 10 or type(version) is not int or version < 1:
             raise ValueError("Invalid retry budget")
         with self.connect() as c:
             c.execute("BEGIN IMMEDIATE")
+            if not c.execute("SELECT 1 FROM sqlite_master WHERE name='jobs'").fetchone():
+                raise Conflict("Worker lease is absent")
             job = c.execute(
                 "SELECT * FROM jobs WHERE document_id=?", (identifier,)
             ).fetchone()
+            if job is None:
+                raise Conflict("Worker lease is absent")
             status = "failed" if job and job["attempts"] >= max_attempts else "queued"
             cursor = c.execute(
-                "UPDATE documents SET status=?,version=version+1 WHERE id=? AND version=?",
+                "UPDATE documents SET status=?,version=version+1 WHERE id=? AND version=? AND status='processing'",
                 (status, identifier, version),
             )
             if cursor.rowcount != 1:
