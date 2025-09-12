@@ -91,3 +91,13 @@ class Maintenance(unittest.TestCase):
             self.assertEqual(store.get(row['id'])['status'],'review')
             fresh=store.create('b'*64,'y','y')
             with self.assertRaises(Conflict):store.fail(fresh['id'],fresh['version'],'no lease')
+
+    def test_dir13(self):
+        from docreview.store import Store
+        with tempfile.TemporaryDirectory() as d:
+            store=Store(pathlib.Path(d)/'db');row=store.create('a'*64,'x','x')
+            for options in ({'now':float('nan')},{'now':True},{'lease_seconds':True},{'lease_seconds':float('inf')}):
+                with self.assertRaises(ValueError):store.claim('worker',**options)
+            for worker in (7,' ','worker\n'):
+                with self.assertRaises(ValueError):store.claim(worker)
+            self.assertEqual(store.get(row['id'])['status'],'queued')

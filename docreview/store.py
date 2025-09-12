@@ -95,9 +95,14 @@ class Store:
             return dict(row) if row else None
 
     def claim(self, worker, now=None, lease_seconds=60):
-        if not worker or not 1 <= lease_seconds <= 3600:
+        import math
+        if (not isinstance(worker, str) or not worker.strip() or len(worker)>120
+                or any(ord(ch)<32 or ord(ch)==127 for ch in worker)
+                or type(lease_seconds) not in (int,float) or not math.isfinite(lease_seconds) or not 1 <= lease_seconds <= 3600):
             raise ValueError("Invalid worker lease")
         now = time.time() if now is None else now
+        if type(now) not in (int,float) or not math.isfinite(now) or now < 0 or not math.isfinite(now+lease_seconds):
+            raise ValueError("Invalid worker lease clock")
         with self.connect() as c:
             c.execute("BEGIN IMMEDIATE")
             c.execute(
