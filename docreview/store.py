@@ -53,6 +53,8 @@ class Store:
             )
 
     def cancel(self, identifier, version):
+        if type(version) is not int or version < 1:
+            raise ValueError("Version must be a positive integer")
         with self.connect() as c:
             cursor = c.execute(
                 "UPDATE documents SET status='rejected',version=version+1 WHERE id=? AND version=? AND status IN ('queued','processing','failed')",

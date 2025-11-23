@@ -101,3 +101,12 @@ class Maintenance(unittest.TestCase):
             for worker in (7,' ','worker\n'):
                 with self.assertRaises(ValueError):store.claim(worker)
             self.assertEqual(store.get(row['id'])['status'],'queued')
+
+    def test_dir14(self):
+        from docreview.store import Store
+        with tempfile.TemporaryDirectory() as d:
+            store=Store(pathlib.Path(d)/'db');row=store.create('a'*64,'x','x')
+            for version in (True,1.0,0,'1'):
+                with self.assertRaises(ValueError):store.cancel(row['id'],version)
+            self.assertEqual(store.get(row['id'])['status'],'queued')
+            self.assertEqual(store.cancel(row['id'],1)['status'],'rejected')
