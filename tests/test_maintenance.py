@@ -110,3 +110,14 @@ class Maintenance(unittest.TestCase):
                 with self.assertRaises(ValueError):store.cancel(row['id'],version)
             self.assertEqual(store.get(row['id'])['status'],'queued')
             self.assertEqual(store.cancel(row['id'],1)['status'],'rejected')
+
+    def test_dir15(self):
+        from docreview.store import Store
+        from docreview.backup import snapshot
+        with tempfile.TemporaryDirectory() as d:
+            root=pathlib.Path(d);source=root/'data';Store(source/'review.sqlite');(source/'images').mkdir();(source/'images/linked').symlink_to(root/'outside')
+            with self.assertRaises(ValueError):snapshot(source,root/'backup')
+            self.assertFalse((root/'backup').exists());self.assertTrue((source/'review.sqlite').exists())
+            (source/'images/linked').unlink();(root/'existing').mkdir()
+            with self.assertRaises(ValueError):snapshot(source,root/'existing')
+            self.assertTrue((root/'existing').exists())

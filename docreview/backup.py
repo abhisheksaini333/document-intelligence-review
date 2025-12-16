@@ -61,26 +61,30 @@ def snapshot(source, target):
     if target.exists() or target.is_relative_to(source):
         raise ValueError("Backup target must be new and outside the data directory")
     target.mkdir(parents=True, mode=0o700)
-    with sqlite3.connect(source / "review.sqlite") as src, sqlite3.connect(
-        target / "review.sqlite"
-    ) as dst:
-        src.backup(dst)
-    images = source / "images"
-    if images.exists():
-        if any(p.is_symlink() for p in images.rglob("*")):
-            raise ValueError("Image symlinks are forbidden")
-        shutil.copytree(images, target / "images", dirs_exist_ok=True)
-    else:
-        (target / "images").mkdir()
-    files = {
-        p.relative_to(target).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-        for p in target.rglob("*")
-        if p.is_file()
-    }
-    (target / "manifest.json").write_text(
-        json.dumps({"format": 1, "files": files}, indent=2)
-    )
-    for path in target.rglob("*"):
-        if path.is_file():
-            path.chmod(0o600)
-    return target
+    try:
+        with sqlite3.connect(source / "review.sqlite") as src, sqlite3.connect(
+            target / "review.sqlite"
+        ) as dst:
+            src.backup(dst)
+        images = source / "images"
+        if images.exists():
+            if any(p.is_symlink() for p in images.rglob("*")):
+                raise ValueError("Image symlinks are forbidden")
+            shutil.copytree(images, target / "images", dirs_exist_ok=True)
+        else:
+            (target / "images").mkdir()
+        files = {
+            p.relative_to(target).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in target.rglob("*")
+            if p.is_file()
+        }
+        (target / "manifest.json").write_text(
+            json.dumps({"format": 1, "files": files}, indent=2)
+        )
+        for path in target.rglob("*"):
+            if path.is_file():
+                path.chmod(0o600)
+        return target
+    except BaseException:
+        shutil.rmtree(target)
+        raise
