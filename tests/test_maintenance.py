@@ -121,3 +121,14 @@ class Maintenance(unittest.TestCase):
             (source/'images/linked').unlink();(root/'existing').mkdir()
             with self.assertRaises(ValueError):snapshot(source,root/'existing')
             self.assertTrue((root/'existing').exists())
+
+    def test_dir16(self):
+        from docreview.backup import snapshot
+        from docreview.store import Store
+        with tempfile.TemporaryDirectory() as d:
+            root=pathlib.Path(d);source=root/'data';source.mkdir()
+            with self.assertRaises(ValueError):snapshot(source,root/'backup')
+            self.assertEqual(list(source.iterdir()),[]);self.assertFalse((root/'backup').exists())
+            Store(root/'outside');(source/'review.sqlite').symlink_to(root/'outside')
+            with self.assertRaises(ValueError):snapshot(source,root/'backup')
+            self.assertFalse((root/'backup').exists())

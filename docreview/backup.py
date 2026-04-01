@@ -58,11 +58,14 @@ def restore(source, target):
 def snapshot(source, target):
     source = Path(source).resolve()
     target = Path(target).resolve()
+    database = source / "review.sqlite"
+    if database.is_symlink() or not database.is_file():
+        raise ValueError("Backup source database must be an existing regular file")
     if target.exists() or target.is_relative_to(source):
         raise ValueError("Backup target must be new and outside the data directory")
     target.mkdir(parents=True, mode=0o700)
     try:
-        with sqlite3.connect(source / "review.sqlite") as src, sqlite3.connect(
+        with sqlite3.connect(database.as_uri() + "?mode=ro", uri=True) as src, sqlite3.connect(
             target / "review.sqlite"
         ) as dst:
             src.backup(dst)
