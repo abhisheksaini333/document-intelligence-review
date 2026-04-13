@@ -74,6 +74,7 @@ class Registry:
             p.name
             for p in self.directory.iterdir()
             if p.is_dir()
+            and not p.is_symlink()
             and not p.name.startswith(".")
             and (p / "manifest.json").exists()
         )

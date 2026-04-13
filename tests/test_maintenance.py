@@ -132,3 +132,13 @@ class Maintenance(unittest.TestCase):
             Store(root/'outside');(source/'review.sqlite').symlink_to(root/'outside')
             with self.assertRaises(ValueError):snapshot(source,root/'backup')
             self.assertFalse((root/'backup').exists())
+
+    def test_dir17(self):
+        from docreview.registry import Registry
+        with tempfile.TemporaryDirectory() as d:
+            root=pathlib.Path(d);external=root/'external';external.mkdir();(external/'manifest.json').write_text('{}')
+            registry=Registry(root/'registry');(registry.directory/'alias').symlink_to(external,target_is_directory=True)
+            self.assertEqual(registry.versions(),[])
+            with patch('docreview.registry.load') as load:
+                with self.assertRaises(ValueError):registry.activate('alias',0)
+                load.assert_not_called()
