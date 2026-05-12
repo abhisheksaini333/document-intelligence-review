@@ -142,3 +142,14 @@ class Maintenance(unittest.TestCase):
             with patch('docreview.registry.load') as load:
                 with self.assertRaises(ValueError):registry.activate('alias',0)
                 load.assert_not_called()
+
+    def test_dir18(self):
+        from docreview.registry import Registry
+        with tempfile.TemporaryDirectory() as d:
+            registry=Registry(d);pointer=pathlib.Path(d)/'active.json'
+            for state in ([],{}, {'revision':True,'version':'model','previous':None},{'revision':1,'version':'../outside','previous':None}):
+                pointer.write_text(json.dumps(state))
+                with patch('docreview.registry.load') as load:
+                    with self.assertRaises(ValueError):registry.classify(['invoice'])
+                    load.assert_not_called()
+            pointer.unlink();self.assertEqual(registry.active()['revision'],0)

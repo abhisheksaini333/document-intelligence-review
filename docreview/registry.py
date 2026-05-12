@@ -41,13 +41,23 @@ class Registry:
 
     def active(self):
         path = self.directory / "active.json"
-        return (
-            json.loads(path.read_text())
-            if path.exists()
-            else {"revision": 0, "version": None, "previous": None}
-        )
+        if path.is_symlink():
+            raise ValueError("Active model pointer must not be a symlink")
+        if not path.exists():
+            return {"revision": 0, "version": None, "previous": None}
+        state = json.loads(path.read_text())
+        version_ok = lambda value: isinstance(value, str) and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}", value)
+        if (not isinstance(state, dict) or set(state) != {"revision", "version", "previous"}
+                or type(state["revision"]) is not int or state["revision"] < 1
+                or not version_ok(state["version"])
+                or (state["previous"] is not None and not version_ok(state["previous"]))
+                or state["version"] not in self.versions()):
+            raise ValueError("Invalid active model pointer")
+        return state
 
     def activate(self, version, expected_revision):
+        if type(expected_revision) is not int or expected_revision < 0:
+            raise ValueError("Invalid expected registry revision")
         if version not in self.versions():
             raise ValueError("Unknown model version")
         load(self.directory / version)
