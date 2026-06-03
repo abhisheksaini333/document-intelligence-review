@@ -153,3 +153,16 @@ class Maintenance(unittest.TestCase):
                     with self.assertRaises(ValueError):registry.classify(['invoice'])
                     load.assert_not_called()
             pointer.unlink();self.assertEqual(registry.active()['revision'],0)
+
+    def test_dir19(self):
+        from docreview.api import create_server
+        import threading,urllib.request,urllib.error
+        with tempfile.TemporaryDirectory() as d:
+            server=create_server(d,port=0);thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+            try:
+                base='http://127.0.0.1:'+str(server.server_port)
+                for query in ('?limit=1&limit=2','?unknown=1','?status=queued&status=failed'):
+                    with self.assertRaises(urllib.error.HTTPError) as error:urllib.request.urlopen(base+'/api/documents'+query)
+                    self.assertEqual(error.exception.code,400)
+                with urllib.request.urlopen(base+'/api/documents?limit=1') as response:self.assertEqual(response.status,200)
+            finally:server.shutdown();thread.join();server.server_close()

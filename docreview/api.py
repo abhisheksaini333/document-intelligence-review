@@ -146,7 +146,13 @@ def create_server(
         def do_GET(self):
             try:
                 path = urlsplit(self.path).path
-                params = parse_qs(urlsplit(self.path).query)
+                params = parse_qs(urlsplit(self.path).query, keep_blank_values=True, max_num_fields=20)
+                if path.startswith("/api/"):
+                    allowed = ({"status", "limit", "offset"} if path == "/api/documents" else
+                               {"q"} if path == "/api/search" else
+                               {"page"} if path.startswith("/api/documents/") and path.endswith("/image") else set())
+                    if any(key not in allowed or len(values) != 1 for key, values in params.items()):
+                        raise ValueError("Unsupported or repeated query parameter")
                 if not path.startswith("/api/"):
                     data, content_type = static_asset(
                         web_root(),
