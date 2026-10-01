@@ -166,3 +166,21 @@ class Maintenance(unittest.TestCase):
                     self.assertEqual(error.exception.code,400)
                 with urllib.request.urlopen(base+'/api/documents?limit=1') as response:self.assertEqual(response.status,200)
             finally:server.shutdown();thread.join();server.server_close()
+
+    def test_dir20(self):
+        from docreview.api import create_server
+        import threading,urllib.request,urllib.error,io
+        from PIL import Image
+        with tempfile.TemporaryDirectory() as d:
+            server=create_server(d,port=0);image=io.BytesIO();Image.new('RGB',(2,2),'white').save(image,format='PNG')
+            row=server.pipeline.ingest(image.getvalue(),'page.png')
+            thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+            try:
+                base='http://127.0.0.1:'+str(server.server_port)
+                for path in ('/api/documents','/api/documents/'+row['id']+'/image','/api/missing'):
+                    try:response=urllib.request.urlopen(base+path)
+                    except urllib.error.HTTPError as error:response=error
+                    with response:
+                        self.assertEqual(response.headers.get('X-Content-Type-Options'),'nosniff')
+                        self.assertEqual(response.headers.get('Cache-Control'),'no-store')
+            finally:server.shutdown();thread.join();server.server_close()

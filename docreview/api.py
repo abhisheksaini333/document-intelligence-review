@@ -53,6 +53,12 @@ def create_server(
         def log_message(self, *args):
             pass
 
+        def end_headers(self):
+            self.send_header("X-Content-Type-Options", "nosniff")
+            if urlsplit(self.path).path.startswith("/api/"):
+                self.send_header("Cache-Control", "no-store")
+            super().end_headers()
+
         def respond(self, status, data):
             body = json.dumps(data, allow_nan=False).encode()
             self.send_response(status)
